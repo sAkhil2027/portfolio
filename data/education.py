@@ -4,34 +4,39 @@ Education data module for Akhil - Data Science & AI/ML.
 
 EDUCATION = [
     {
-        "degree": "Bachelor of Technology in Computer Science (Data Science Specialization)",
-        "institution": "National Institute of Technology (NIT)",
-        "period": "2016 - 2020",
-        "grade": "First Class with Distinction (8.9/10 CGPA)",
+        "degree": "Bachelor of Technology in Mechatronics and Automation Engineering",
+        "institution": "Indian Institute of Information Technology (IIIT), Bhagalpur",
+        "period": "2023 - 2027",
+        "grade": "7.68/10 CGPA",
         "highlights": [
-            "Specialized in Machine Learning, Statistical Data Mining, Natural Language Processing, and Linear Algebra.",
-            "Published undergraduate capstone thesis on automated time-series forecasting for energy consumption."
+            "Specialized in Machine Learning, Statistical Data Mining, Natural Language Processing, and Linear Algebra."
         ]
     }
 ]
 
 CERTIFICATIONS = [
     {
-        "title": "AWS Certified Data Engineer – Associate",
-        "issuer": "Amazon Web Services",
-        "date": "2023",
-        "credential_id": "AWS-DEA-883019"
+        "title": "ServiceNow Certified System Administrator (CSA)",
+        "issuer": "ServiceNow",
+        "date": "June 24, 2026",
+        "credential_url": "https://drive.google.com/file/d/YOUR_SERVICENOW_CSA_DRIVE_LINK/view"
     },
     {
-        "title": "Google Data Analytics Professional Certificate",
-        "issuer": "Google / Coursera",
-        "date": "2022",
-        "credential_id": "GOOG-DA-552109"
+        "title": "ServiceNow Certified Application Developer (CAD)",
+        "issuer": "ServiceNow",
+        "date": "June 25, 2026",
+        "credential_url": "https://drive.google.com/file/d/YOUR_SERVICENOW_CAD_DRIVE_LINK/view"
     },
     {
-        "title": "Deep Learning Specialization",
-        "issuer": "DeepLearning.AI",
-        "date": "2021",
-        "credential_id": "DLAI-DL-991204"
+        "title": "Prompt Engineering with Amazon Q Developer",
+        "issuer": "Director, AWS Training & Certification",
+        "date": "July 23, 2026",
+        "credential_url": "https://drive.google.com/file/d/YOUR_AWS_PROMPT_ENG_DRIVE_LINK/view"
+    },
+    {
+        "title": "AWS Foundations: Machine Learning Basics",
+        "issuer": "Director, AWS Training & Certification",
+        "date": "July 23, 2026",
+        "credential_url": "https://drive.google.com/file/d/YOUR_AWS_ML_BASICS_DRIVE_LINK/view"
     }
 ]
