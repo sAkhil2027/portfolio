@@ -1,0 +1,33 @@
+"""
+Profile data module for Akhil - Data Analyst, Data Scientist & AI/ML Specialist.
+"""
+
+PROFILE = {
+    "name": "Akhil",
+    "title": "Data Scientist, Data Analyst & AI/ML Specialist",
+    "tagline": "Transforming complex datasets into actionable business insights, building predictive ML models, and deploying intelligent AI solutions.",
+    "bio": (
+        "I am a Data Scientist and AI/ML Specialist with expertise in exploratory data analysis (EDA), "
+        "predictive machine learning modeling, deep learning, statistical inference, and interactive data visualization. "
+        "I bridge the gap between raw data and strategic business decisions using Python, PyTorch, Scikit-Learn, SQL, "
+        "Tableau/Power BI, and modern LLM frameworks."
+    ),
+    "email": "sakhilvikram@gmail.com",
+    "location": "Bangalore, India",
+    "status": "Available for Data Science & AI roles",
+    "avatar_text": "AK",
+    "github": "https://github.com/sAkhil2027",
+    "linkedin": "https://www.linkedin.com/in/akhilvikramsingh/",
+    "twitter": "https://twitter.com/your-actual-handle",
+    "stats": [
+        {"label": "Years Experience", "value": "1+"},
+        {"label": "ML Models Deployed", "value": "4+"},
+        {"label": "Data Analyzed", "value": "100K+ Rows"},
+    ],
+    "highlights": [
+        "Machine Learning & Predictive Modeling",
+        "Exploratory Data Analysis (EDA) & Statistics",
+        "Interactive Dashboards (Power BI, Tableau, Dash)",
+        "Generative AI & Natural Language Processing (NLP)",
+    ]
+}
