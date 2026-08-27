@@ -8,7 +8,7 @@
   <div class="container">
     <div class="section-header">
       <span class="section-tag">Portfolio Catalog</span>
-      <h2 class="section-title">Data Science & AI Projects</h2>
+      <h2 class="section-title">All Data Science & AI Projects</h2>
       <p class="section-subtitle">Browse through Machine Learning models, Data Analytics pipelines, and Generative AI applications.</p>
     </div>
 
@@ -37,19 +37,18 @@
           <h3 class="project-title">{{ project.title }}</h3>
           <p class="project-desc">{{ project.description }}</p>
 
-          <div class="tech-badges" style="margin-bottom: 1.5rem;">
-            {% for tag in project.tags[:4] %}
-            <span class="tech-badge">{{ tag }}</span>
-            {% endfor %}
+          <!-- Technologies Bullet List -->
+          <div style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--accent-cyan); margin-bottom: 1.5rem; font-weight: 600;">
+            <i class="fa-solid fa-code" style="margin-right: 0.4rem; color: var(--text-dim);"></i>
+            {{ project.tags | join(' • ') }}
           </div>
 
-          <div class="project-footer">
-            <div class="project-links">
-              <a href="{{ project.repo_url }}" target="_blank" class="icon-link" title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
-              <a href="{{ project.demo_url }}" target="_blank" class="icon-link" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-            </div>
-            <a href="{{ url_for('project_detail', project_id=project.id) }}" class="view-detail-btn">
-              Details <i class="fa-solid fa-chevron-right"></i>
+          <div class="project-footer" style="gap: 0.75rem; flex-wrap: wrap;">
+            <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-primary" style="padding: 0.45rem 1rem; font-size: 0.85rem;">
+              <i class="fa-solid fa-eye"></i> View Project
+            </a>
+            <a href="{{ project.repo_url }}" target="_blank" class="btn btn-secondary" style="padding: 0.45rem 1rem; font-size: 0.85rem;">
+              <i class="fa-brands fa-github"></i> GitHub
             </a>
           </div>
         </div>

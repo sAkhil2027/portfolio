@@ -203,19 +203,12 @@
     <div class="section-header">
       <span class="section-tag">Featured Work</span>
       <h2 class="section-title">Projects Showcase</h2>
-      <p class="section-subtitle">A collection of engineering projects, cloud tools, and full-stack web applications.</p>
-    </div>
-
-    <div class="project-filters">
-      <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
-      {% for cat in categories %}
-      <button class="filter-btn" onclick="filterProjects('{{ cat | lower | replace(' ', '-') }}')">{{ cat }}</button>
-      {% endfor %}
+      <p class="section-subtitle">Featured Machine Learning, Generative AI, and Data Science systems.</p>
     </div>
 
     <div class="projects-grid" id="projects-grid">
-      {% for project in projects %}
-      <div class="project-card" data-category="{{ project.category | lower | replace(' ', '-') }}">
+      {% for project in featured_projects[:4] %}
+      <div class="project-card">
         <div class="project-img-wrapper">
           <img src="{{ url_for('static', path='images/projects/' + project.image) }}" alt="{{ project.title }}" class="project-img">
           {% if project.featured %}
@@ -227,24 +220,30 @@
           <h3 class="project-title">{{ project.title }}</h3>
           <p class="project-desc">{{ project.description }}</p>
           
-          <div class="tech-badges" style="margin-bottom: 1.5rem;">
-            {% for tag in project.tags[:4] %}
-            <span class="tech-badge">{{ tag }}</span>
-            {% endfor %}
+          <!-- Technologies Bullet List -->
+          <div style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--accent-cyan); margin-bottom: 1.5rem; font-weight: 600;">
+            <i class="fa-solid fa-code" style="margin-right: 0.4rem; color: var(--text-dim);"></i>
+            {{ project.tags | join(' • ') }}
           </div>
 
-          <div class="project-footer">
-            <div class="project-links">
-              <a href="{{ project.repo_url }}" target="_blank" class="icon-link" title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
-              <a href="{{ project.demo_url }}" target="_blank" class="icon-link" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-            </div>
-            <a href="{{ url_for('project_detail', project_id=project.id) }}" class="view-detail-btn">
-              Details <i class="fa-solid fa-chevron-right"></i>
+          <div class="project-footer" style="gap: 0.75rem; flex-wrap: wrap;">
+            <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-primary" style="padding: 0.45rem 1rem; font-size: 0.85rem;">
+              <i class="fa-solid fa-eye"></i> View Project
+            </a>
+            <a href="{{ project.repo_url }}" target="_blank" class="btn btn-secondary" style="padding: 0.45rem 1rem; font-size: 0.85rem;">
+              <i class="fa-brands fa-github"></i> GitHub
             </a>
           </div>
         </div>
       </div>
       {% endfor %}
+    </div>
+
+    <!-- View All Projects CTA -->
+    <div style="text-align: center; margin-top: 3.5rem;">
+      <a href="{{ url_for('projects_list') }}" class="btn btn-secondary" style="padding: 0.85rem 2.25rem; font-size: 1.05rem; border-color: var(--accent-cyan);">
+        View All Projects <i class="fa-solid fa-arrow-right" style="margin-left: 0.5rem; color: var(--accent-cyan);"></i>
+      </a>
     </div>
   </div>
 </section>
