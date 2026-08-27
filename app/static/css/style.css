@@ -852,7 +852,30 @@ a {
   background: var(--bg-card);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  padding: 2rem;
+  padding: 1.75rem;
+  max-height: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card-scroll {
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  flex-grow: 1;
+}
+
+.edu-card-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.edu-card-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-full);
+}
+
+.edu-card-scroll::-webkit-scrollbar-thumb {
+  background: var(--accent-cyan);
+  border-radius: var(--radius-full);
 }
 
 .edu-degree {
