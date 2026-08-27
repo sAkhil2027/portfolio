@@ -42,12 +42,12 @@
         <a href="{{ profile.linkedin }}" target="_blank" class="social-icon" title="LinkedIn" aria-label="LinkedIn Profile">
           <i class="fa-brands fa-linkedin"></i>
         </a>
-        <a href="mailto:{{ profile.email }}" class="social-icon" title="Email" aria-label="Send Email">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ profile.email }}" target="_blank" class="social-icon" title="Send Email via Gmail" aria-label="Send Email">
           <i class="fa-solid fa-envelope"></i>
         </a>
-        <span style="font-size: 0.9rem; color: var(--text-muted); font-family: var(--font-mono); display: flex; align-items: center; gap: 0.5rem; margin-left: 0.25rem;">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ profile.email }}" target="_blank" style="font-size: 0.9rem; color: var(--text-muted); font-family: var(--font-mono); display: flex; align-items: center; gap: 0.5rem; margin-left: 0.25rem; text-decoration: none;">
           <span style="color: var(--accent-cyan);">•</span> {{ profile.email }}
-        </span>
+        </a>
       </div>
 
       <div class="hero-stats">
@@ -319,7 +319,7 @@
           <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
           <div>
             <div class="contact-lbl">Email Address</div>
-            <div class="contact-val">{{ profile.email }}</div>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ profile.email }}" target="_blank" class="contact-val" style="text-decoration: none; color: var(--accent-cyan);">{{ profile.email }}</a>
           </div>
         </div>
 
