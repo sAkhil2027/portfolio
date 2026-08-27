@@ -20,13 +20,18 @@
 
       <p class="hero-tagline">{{ profile.tagline }}</p>
 
-      <div class="hero-actions">
+      <div class="hero-actions" style="gap: 1rem; flex-wrap: wrap;">
         <a href="#projects" class="btn btn-primary">
           <i class="fa-solid fa-rocket"></i> Explore Work
         </a>
-        <a href="{{ url_for('download_resume') }}" target="_blank" class="btn btn-secondary">
-          <i class="fa-solid fa-file-pdf"></i> Download Resume
-        </a>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <a href="{{ url_for('download_resume') }}?type=aiml" target="_blank" class="btn btn-secondary" title="Download AI / ML CV">
+            <i class="fa-solid fa-brain" style="color: var(--accent-cyan);"></i> AI / ML CV
+          </a>
+          <a href="{{ url_for('download_resume') }}?type=data-analyst" target="_blank" class="btn btn-secondary" title="Download Data Analyst CV">
+            <i class="fa-solid fa-chart-pie" style="color: var(--accent-emerald);"></i> Data Analyst CV
+          </a>
+        </div>
       </div>
 
       <!-- Social Links (GitHub, LinkedIn, Email) -->

@@ -106,12 +106,20 @@ async def project_detail(request: Request, project_id: str):
 
 
 @pages_bp.get("/resume", name="download_resume")
-async def download_resume():
-    """Serves the PDF resume file."""
-    resume_path = os.path.join(STATIC_DIR, "resume", "resume.pdf")
+async def download_resume(type: str = "aiml"):
+    """Serves specialized PDF resume files (aiml or data-analyst)."""
+    filename = "resume-data-analyst.pdf" if type == "data-analyst" else "resume-aiml.pdf"
+    resume_path = os.path.join(STATIC_DIR, "resume", filename)
+
+    if not os.path.exists(resume_path):
+        fallback_path = os.path.join(STATIC_DIR, "resume", "resume.pdf")
+        if os.path.exists(fallback_path):
+            resume_path = fallback_path
+
     if not os.path.exists(resume_path):
         raise HTTPException(status_code=404, detail="Resume PDF not found")
-    return FileResponse(resume_path, media_type="application/pdf", filename="resume.pdf")
+
+    return FileResponse(resume_path, media_type="application/pdf", filename=filename)
 
 
 @pages_bp.post("/api/contact")
