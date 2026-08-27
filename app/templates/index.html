@@ -135,7 +135,7 @@
     <div class="skills-tabs">
       <button class="tab-btn active" onclick="filterSkills('all')">All Skills</button>
       {% for category in skills %}
-      <button class="tab-btn" onclick="filterSkills('{{ category.category | lower | replace(' ', '-') }}')">
+      <button class="tab-btn" onclick="filterSkills('{{ category.category | lower | replace(' ','-') }}')">
         <i class="fa-solid {{ category.icon }}"></i> {{ category.category }}
       </button>
       {% endfor %}
@@ -147,12 +147,12 @@
         <div class="skill-card" data-category="{{ category.category | lower | replace(' ', '-') }}">
           <div class="skill-header">
             <span class="skill-name">
-              <i class="fa-brands {{ skill.icon }} fa-solid"></i> {{ skill.name }}
+              <i class="{% if 'fa-brands' in skill.icon %}{{ skill.icon }}{% else %}fa-solid {{ skill.icon }}{% endif %}" style="color: {{ skill.color }}; margin-right: 0.5rem; font-size: 1.1rem;"></i> {{ skill.name }}
             </span>
-            <span class="skill-level">{{ skill.level }}%</span>
+            <span class="skill-level" style="color: {{ skill.color }}; font-weight: 700;">{{ skill.level }}%</span>
           </div>
           <div class="progress-bar">
-            <div class="progress-fill" style="width: {{ skill.level }}%;"></div>
+            <div class="progress-fill" style="width: {{ skill.level }}%; background: {{ skill.color }}; box-shadow: 0 0 10px {{ skill.color }};"></div>
           </div>
         </div>
         {% endfor %}
