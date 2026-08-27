@@ -1,13 +1,13 @@
-# Akhil's Data Science & AI/ML Portfolio (`akhil-portfolio`)
+# Akhil's Data Science & AI/ML Portfolio (`sAkhil2027/portfolio`)
 
-A modern, high-performance personal portfolio web application built with **Python (FastAPI)**, **Uvicorn**, **Jinja2 Templates**, dynamic data stores, and a custom **Glassmorphism CSS design system**.
+A modern, high-performance personal portfolio web application built with **Python (FastAPI)**, **Uvicorn**, **Jinja2 Templates**, decoupled data modules, and a custom **Dark Glassmorphism CSS Design System**.
 
 ---
 
 ## 📁 Project Architecture & File Directory
 
-```
-akhil-portfolio/
+```text
+portfolio/
 │
 ├── app/
 │   ├── __init__.py          # FastAPI application factory, StaticFiles mounting & exception handlers
@@ -15,33 +15,37 @@ akhil-portfolio/
 │   │
 │   ├── routes/
 │   │   ├── __init__.py      # Routes package initialization
-│   │   └── pages.py         # APIRouter for portfolio pages & contact submission endpoint
+│   │   └── pages.py         # APIRouter for portfolio pages, inline resume viewer, & SMTP contact endpoint
 │   │
 │   ├── templates/
-│   │   ├── base.html        # Master layout, navbar, SEO tags, footer
-│   │   ├── index.html       # Landing page (Hero, Profile, Skills, Experience, Projects, Contact)
-│   │   └── project.html     # Dedicated project detail view
+│   │   ├── base.html        # Master Jinja2 layout, navbar, SEO metadata, footer
+│   │   ├── index.html       # Landing page (Hero, Profile, Skills, Experience, Featured Work, Education, Contact)
+│   │   ├── projects.html    # Dedicated Projects catalog gallery page (/projects)
+│   │   └── project.html     # Deep-dive individual project detail page (/projects/{project_id})
 │   │
 │   └── static/
 │       ├── css/
-│       │   └── style.css    # Dark glassmorphism CSS design system & micro-animations
+│       │   └── style.css    # Dark glassmorphism design system, responsive breakpoints, custom scrollbars
 │       │
 │       ├── images/
 │       │   └── projects/    # High-impact project preview graphics
 │       │
 │       └── resume/
-│           └── resume.pdf   # Downloadable PDF resume
+│           ├── resume-aiml.pdf          # Specialized AI / ML Resume
+│           └── resume-data-analyst.pdf  # Specialized Data Analyst Resume
 │
 ├── data/
-│   ├── __init__.py          # Data package exports & helper getters
-│   ├── projects.py          # Detailed project list, tech stacks, metrics
-│   ├── skills.py            # Categorized skills matrix & proficiencies
-│   ├── experience.py        # Professional career history timeline
-│   ├── education.py         # Academic degree & certifications
-│   └── profile.py           # Personal bio, taglines, social links
+│   ├── __init__.py          # Data package exports & helper getters (get_project_by_id_or_slug)
+│   ├── projects.py          # Detailed project models (Problem, Solution, Contribution, Challenges, Tech, Metrics)
+│   ├── skills.py            # Categorized 40+ Skills matrix with unique brand icons & custom color glows
+│   ├── experience.py        # Vertical career timeline (Full-Time, Internships & Hackathons)
+│   ├── education.py         # Academic degree & Industry Certifications with Google Drive links
+│   └── profile.py           # Personal bio, taglines, social links, and metrics
 │
-├── requirements.txt         # Python dependencies (fastapi, uvicorn, jinja2, etc.)
-└── README.md                # Project setup and usage documentation
+├── .env.example             # Template for SMTP Gmail notification credentials
+├── .gitignore               # Excludes secrets (.env), virtualenv, and build artifacts
+├── requirements.txt         # Python dependencies (fastapi, uvicorn, jinja2, python-multipart)
+└── README.md                # Comprehensive repository documentation
 ```
 
 ---
@@ -49,12 +53,22 @@ akhil-portfolio/
 ## ⚡ Features & Visual Highlights
 
 - **FastAPI Engine**: Asynchronous route handlers delivering high-throughput performance with automatic OpenAPI documentation.
-- **Dynamic Hero Section**: Real-time typing animation, availability status pill, and interactive model training terminal mockup.
-- **Data Science Skills Matrix**: Interactive filterable tabs for Machine Learning, Data Analytics & Statistics, BI & Visualization, and AI / MLOps.
-- **Interactive Experience Timeline**: Career history entries highlighting ML models deployed, data pipelines built, and ROI metrics.
-- **Project Showcase & Detail Routing**: Filterable projects grid with detailed detail views (`/project/<slug>`), performance metrics, and live demo / GitHub repo links.
-- **Downloadable Resume**: Direct serving of `resume.pdf` at `/resume`.
-- **AJAX Contact Form**: Instant feedback toast notifications without page reloads.
+- **Dynamic Hero Section**: Interactive terminal mockup, live stats, and social links (GitHub, LinkedIn, Email).
+- **Dual Specialized Resumes**: Instant in-browser PDF viewing for:
+  - 🧠 **AI / ML CV** (`/resume?type=aiml`)
+  - 📊 **Data Analyst CV** (`/resume?type=data-analyst`)
+- **40+ Skills Matrix**: Unique brand icons (Python, SQL, RAG, MCP, LangChain, FAISS, Power BI, Streamlit, Docker, etc.) with custom neon progress glows.
+- **Vertical Experience Timeline**: Grouped by Year (2026, 2025, 2024), covering Full-Time engineering roles, Research Internships, and National Hackathons.
+- **Deep-Dive Project Detail Pages (`/projects/{project_id}`)**:
+  - 🔴 **Problem Statement**
+  - 💡 **Proposed Solution**
+  - ⚙️ **My Contribution**
+  - 🛡️ **Technical Challenges & Solutions**
+  - 🏗️ **Architecture & System Design**
+  - ✅ **Key Features**
+  - 📊 **Key Performance Metrics Grid**
+- **Scrollable Education & Certifications Block**: Compact, fixed-height cards with custom vertical scrollbars and direct Google Drive certificate links.
+- **Background Gmail SMTP Contact Engine**: Form submissions asynchronously send email notifications directly to your Gmail inbox via `POST /api/contact` using BackgroundTasks.
 
 ---
 
@@ -62,8 +76,8 @@ akhil-portfolio/
 
 ### 1. Clone & Setup Virtual Environment
 ```bash
-git clone https://github.com/akhil-data/akhil-portfolio.git
-cd akhil-portfolio
+git clone https://github.com/sAkhil2027/portfolio.git
+cd portfolio
 
 # Create virtual environment
 python -m venv venv
@@ -77,7 +91,17 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-### 3. Run Application Locally
+### 3. Setup Environment Variables (`.env`)
+Create a `.env` file in the root directory:
+```env
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your_email@gmail.com
+SMTP_PASSWORD=your_16_digit_gmail_app_password
+NOTIFICATION_EMAIL=your_email@gmail.com
+```
+
+### 4. Run Application Locally
 ```bash
 python -m app.main
 ```
@@ -90,24 +114,13 @@ Open your browser and navigate to: **`http://127.0.0.1:5000`**
 
 ## ⚙️ Customizing Content
 
-All text, projects, skills, and career history are decoupled from HTML templates and stored in python files under the `data/` folder:
+All text, projects, skills, and career history are decoupled from HTML templates and stored in Python data modules:
 
 - **Edit Profile & Bio**: Modify `data/profile.py`
 - **Add / Remove Projects**: Update `data/projects.py`
 - **Update Skills & Levels**: Edit `data/skills.py`
 - **Update Work History**: Edit `data/experience.py`
 - **Update Education & Certifications**: Edit `data/education.py`
-
----
-
-## 📌 Repository Commit Architecture
-
-The codebase is organized into 5 modular commits:
-1. `Part 1/5`: Core data models (`data/`), skill matrix, and dependencies (`requirements.txt`).
-2. `Part 2/5`: Glassmorphism design system (`style.css`), generated resume PDF, and project graphics.
-3. `Part 3/5`: Jinja2 templates (`base.html`, `index.html`, `projects.html`, `project.html`).
-4. `Part 4/5`: FastAPI application factory, Uvicorn runner, and APIRouter page routes.
-5. `Part 5/5`: Documentation and deployment configuration.
 
 ---
 
