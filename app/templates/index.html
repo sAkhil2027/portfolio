@@ -1,0 +1,486 @@
+{% extends "base.html" %}
+
+{% block title %}{{ profile.name }} | {{ profile.title }}{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-section" id="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span>{{ profile.status }}</span>
+      </div>
+
+      <h1 class="hero-title">
+        Hi, I'm <span class="gradient-text">{{ profile.name }}</span>.<br>
+        <span id="typed-text" style="font-size: 0.85em; font-weight: 700; color: #cbd5e1;">Software Engineer</span>
+      </h1>
+
+      <p class="hero-tagline">{{ profile.tagline }}</p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">
+          <i class="fa-solid fa-rocket"></i> Explore Work
+        </a>
+        <a href="{{ url_for('download_resume') }}" target="_blank" class="btn btn-secondary">
+          <i class="fa-solid fa-file-pdf"></i> Download Resume
+        </a>
+      </div>
+
+      <!-- Social Links (GitHub, LinkedIn, Email) -->
+      <div class="hero-socials" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem;">
+        <a href="{{ profile.github }}" target="_blank" class="social-icon" title="GitHub" aria-label="GitHub Profile">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="{{ profile.linkedin }}" target="_blank" class="social-icon" title="LinkedIn" aria-label="LinkedIn Profile">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="mailto:{{ profile.email }}" class="social-icon" title="Email" aria-label="Send Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+        <span style="font-size: 0.9rem; color: var(--text-muted); font-family: var(--font-mono); display: flex; align-items: center; gap: 0.5rem; margin-left: 0.25rem;">
+          <span style="color: var(--accent-cyan);">•</span> {{ profile.email }}
+        </span>
+      </div>
+
+      <div class="hero-stats">
+        {% for stat in profile.stats %}
+        <div class="stat-item">
+          <span class="stat-val">{{ stat.value }}</span>
+          <span class="stat-lbl">{{ stat.label }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Glass Terminal Graphics Card -->
+    <div class="hero-card">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </div>
+        <span class="terminal-title">akhil@portfolio:~</span>
+      </div>
+      <div class="terminal-code">
+        <p><span class="code-comment">// Model initialization</span></p>
+        <p><span class="code-keyword">const</span> dataScientist = {</p>
+        <p>&nbsp;&nbsp;name: <span class="code-string">"{{ profile.name }}"</span>,</p>
+        <p>&nbsp;&nbsp;title: <span class="code-string">"Data Scientist & AI/ML"</span>,</p>
+        <p>&nbsp;&nbsp;location: <span class="code-string">"{{ profile.location }}"</span>,</p>
+        <p>&nbsp;&nbsp;stack: [<span class="code-string">"Python"</span>, <span class="code-string">"PyTorch"</span>, <span class="code-string">"SQL"</span>, <span class="code-string">"Pandas"</span>, <span class="code-string">"Power BI"</span>],</p>
+        <p>&nbsp;&nbsp;trainModel: <span class="code-function">function</span>() {</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">"Extracting insights & predictive accuracy."</span>;</p>
+        <p>&nbsp;&nbsp;}</p>
+        <p>};</p>
+        <p><span class="code-comment">&gt; dataScientist.trainModel()</span></p>
+        <p><span class="code-string">"🎯 Accuracy: 96.4% | Insights Ready!"</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">About Me</span>
+      <h2 class="section-title">Architecting Digital Solutions</h2>
+      <p class="section-subtitle">A glimpse into my background, core engineering philosophy, and expertise.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;" class="gradient-text">Who I Am</h3>
+        <p class="bio-text">{{ profile.bio }}</p>
+        <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1.5rem;">
+          <a href="#contact" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+            <i class="fa-solid fa-paper-plane"></i> Get In Touch
+          </a>
+        </div>
+      </div>
+
+      <div class="about-card">
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Core Competencies</h3>
+        <ul class="highlights-list">
+          {% for item in profile.highlights %}
+          <li class="highlight-item">
+            <i class="fa-solid fa-circle-check highlight-icon"></i>
+            <span>{{ item }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills Matrix Section -->
+<section class="section" id="skills" style="background: rgba(15, 23, 42, 0.4);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Technical Proficiency</span>
+      <h2 class="section-title">Skills & Capabilities</h2>
+      <p class="section-subtitle">Technologies and tools I use to build scalable end-to-end applications.</p>
+    </div>
+
+    <div class="skills-tabs">
+      <button class="tab-btn active" onclick="filterSkills('all')">All Skills</button>
+      {% for category in skills %}
+      <button class="tab-btn" onclick="filterSkills('{{ category.category | lower | replace(' ', '-') }}')">
+        <i class="fa-solid {{ category.icon }}"></i> {{ category.category }}
+      </button>
+      {% endfor %}
+    </div>
+
+    <div class="skills-grid" id="skills-grid">
+      {% for category in skills %}
+        {% for skill in category.skills %}
+        <div class="skill-card" data-category="{{ category.category | lower | replace(' ', '-') }}">
+          <div class="skill-header">
+            <span class="skill-name">
+              <i class="fa-brands {{ skill.icon }} fa-solid"></i> {{ skill.name }}
+            </span>
+            <span class="skill-level">{{ skill.level }}%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ skill.level }}%;"></div>
+          </div>
+        </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Work Experience Section -->
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Career Journey</span>
+      <h2 class="section-title">Work Experience</h2>
+      <p class="section-subtitle">My professional track record building production systems and leading engineering initiatives.</p>
+    </div>
+
+    <div class="timeline">
+      {% for item in experience %}
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-meta">
+            <div>
+              <h3 class="timeline-role">{{ item.role }}</h3>
+              <div class="timeline-company">{{ item.company }} — {{ item.location }}</div>
+            </div>
+            <span class="timeline-period">{{ item.period }}</span>
+          </div>
+          <p class="timeline-desc">{{ item.description }}</p>
+          
+          <ul class="achievements-list">
+            {% for achievement in item.achievements %}
+            <li>{{ achievement }}</li>
+            {% endfor %}
+          </ul>
+
+          <div class="tech-badges">
+            {% for tech in item.technologies %}
+            <span class="tech-badge">{{ tech }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Projects Showcase Section -->
+<section class="section" id="projects" style="background: rgba(15, 23, 42, 0.4);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Featured Work</span>
+      <h2 class="section-title">Projects Showcase</h2>
+      <p class="section-subtitle">A collection of engineering projects, cloud tools, and full-stack web applications.</p>
+    </div>
+
+    <div class="project-filters">
+      <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+      {% for cat in categories %}
+      <button class="filter-btn" onclick="filterProjects('{{ cat | lower | replace(' ', '-') }}')">{{ cat }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="projects-grid" id="projects-grid">
+      {% for project in projects %}
+      <div class="project-card" data-category="{{ project.category | lower | replace(' ', '-') }}">
+        <div class="project-img-wrapper">
+          <img src="{{ url_for('static', path='images/projects/' + project.image) }}" alt="{{ project.title }}" class="project-img">
+          {% if project.featured %}
+          <span class="featured-badge">Featured</span>
+          {% endif %}
+        </div>
+        <div class="project-content">
+          <span class="project-category">{{ project.category }}</span>
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-desc">{{ project.description }}</p>
+          
+          <div class="tech-badges" style="margin-bottom: 1.5rem;">
+            {% for tag in project.tags[:4] %}
+            <span class="tech-badge">{{ tag }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="{{ project.repo_url }}" target="_blank" class="icon-link" title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+              <a href="{{ project.demo_url }}" target="_blank" class="icon-link" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+            <a href="{{ url_for('project_detail', project_id=project.id) }}" class="view-detail-btn">
+              Details <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Education & Certifications Section -->
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Academic Background</span>
+      <h2 class="section-title">Education & Credentials</h2>
+      <p class="section-subtitle">Formal computer science degree and professional cloud certifications.</p>
+    </div>
+
+    <div class="education-grid">
+      {% for degree in education.degrees %}
+      <div class="edu-card">
+        <h3 class="edu-degree">{{ degree.degree }}</h3>
+        <div class="edu-school">{{ degree.institution }} ({{ degree.period }})</div>
+        <div class="edu-grade">{{ degree.grade }}</div>
+        <ul class="achievements-list">
+          {% for h in degree.highlights %}
+          <li>{{ h }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+
+      <div class="edu-card">
+        <h3 class="edu-degree">Industry Certifications</h3>
+        <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+          {% for cert in education.certifications %}
+          <div style="padding: 1rem; background: var(--glass-bg); border-radius: var(--radius-md); border: 1px solid var(--glass-border);">
+            <div style="font-weight: 700; color: var(--accent-cyan);">{{ cert.title }}</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Issuer: {{ cert.issuer }} ({{ cert.date }})</div>
+            <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-dim); margin-top: 0.25rem;">ID: {{ cert.credential_id }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section" id="contact" style="background: rgba(15, 23, 42, 0.4);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Get In Touch</span>
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="section-subtitle">Have a project in mind or interested in working together? Send me a message!</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info-card">
+        <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;" class="gradient-text">Contact Information</h3>
+        
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <div class="contact-lbl">Email Address</div>
+            <div class="contact-val">{{ profile.email }}</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <div class="contact-lbl">Location</div>
+            <div class="contact-val">{{ profile.location }}</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-briefcase"></i></div>
+          <div>
+            <div class="contact-lbl">Availability</div>
+            <div class="contact-val">{{ profile.status }}</div>
+          </div>
+        </div>
+
+        <div class="social-bar">
+          <a href="{{ profile.github }}" target="_blank" class="social-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="{{ profile.linkedin }}" target="_blank" class="social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="{{ profile.twitter }}" target="_blank" class="social-icon" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <!-- AJAX Contact Form -->
+      <form class="contact-form" id="contact-form">
+        <div id="toast" class="toast-msg"></div>
+
+        <div class="form-group">
+          <label class="form-label" for="contact-name">Your Name</label>
+          <input type="text" id="contact-name" name="name" class="form-input" placeholder="John Doe" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contact-email">Email Address</label>
+          <input type="email" id="contact-email" name="email" class="form-input" placeholder="john@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contact-subject">Subject</label>
+          <input type="text" id="contact-subject" name="subject" class="form-input" placeholder="Project Opportunity / Collaboration">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" class="form-textarea" placeholder="Hello Akhil, I would like to discuss..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="justify-content: center; width: 100%;" id="submit-btn">
+          <i class="fa-solid fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // Dynamic Typing Animation in Hero
+  const phrases = ["Data Scientist", "AI/ML Specialist", "Data Analyst", "LLM & Predictive Modeling"];
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typedTextEl = document.getElementById("typed-text");
+
+  function typeEffect() {
+    if (!typedTextEl) return;
+    const currentPhrase = phrases[phraseIndex];
+    if (isDeleting) {
+      typedTextEl.textContent = currentPhrase.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typedTextEl.textContent = currentPhrase.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let typeSpeed = isDeleting ? 40 : 80;
+
+    if (!isDeleting && charIndex === currentPhrase.length) {
+      typeSpeed = 2000;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      typeSpeed = 400;
+    }
+
+    setTimeout(typeEffect, typeSpeed);
+  }
+  document.addEventListener("DOMContentLoaded", () => setTimeout(typeEffect, 500));
+
+  // Skill matrix filter function
+  function filterSkills(category) {
+    const cards = document.querySelectorAll('.skill-card');
+    const buttons = document.querySelectorAll('.skills-tabs .tab-btn');
+    
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+
+    cards.forEach(card => {
+      if (category === 'all' || card.dataset.category === category) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Project grid filter function
+  function filterProjects(category) {
+    const cards = document.querySelectorAll('.project-card');
+    const buttons = document.querySelectorAll('.project-filters .filter-btn');
+
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+
+    cards.forEach(card => {
+      if (category === 'all' || card.dataset.category === category) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Contact Form AJAX Handler
+  const contactForm = document.getElementById('contact-form');
+  const toast = document.getElementById('toast');
+  const submitBtn = document.getElementById('submit-btn');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+
+      const payload = {
+        name: document.getElementById('contact-name').value,
+        email: document.getElementById('contact-email').value,
+        subject: document.getElementById('contact-subject').value,
+        message: document.getElementById('contact-message').value
+      };
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const resData = await response.json();
+        toast.style.display = 'block';
+
+        if (response.ok && resData.success) {
+          toast.className = 'toast-msg toast-success';
+          toast.textContent = resData.message;
+          contactForm.reset();
+        } else {
+          toast.className = 'toast-msg toast-error';
+          toast.textContent = resData.message || 'An error occurred. Please try again.';
+        }
+      } catch (err) {
+        toast.style.display = 'block';
+        toast.className = 'toast-msg toast-error';
+        toast.textContent = 'Failed to submit form. Please check your network connection.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+      }
+    });
+  }
+</script>
+{% endblock %}

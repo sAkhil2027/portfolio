@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Projects Catalog | {{ profile.name }}{% endblock %}
+{% block meta_description %}Explore Data Science, Machine Learning, and AI projects by {{ profile.name }}.{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 9rem;">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Portfolio Catalog</span>
+      <h2 class="section-title">Data Science & AI Projects</h2>
+      <p class="section-subtitle">Browse through Machine Learning models, Data Analytics pipelines, and Generative AI applications.</p>
+    </div>
+
+    <!-- Filter Pills -->
+    <div class="project-filters">
+      <a href="{{ url_for('projects_list') }}" class="filter-btn {% if not selected_category %}active{% endif %}">All Projects</a>
+      {% for cat in categories %}
+      <a href="{{ url_for('projects_list') }}?category={{ cat | urlencode }}" class="filter-btn {% if selected_category == cat %}active{% endif %}">
+        {{ cat }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+      {% for project in projects %}
+      <div class="project-card">
+        <div class="project-img-wrapper">
+          <img src="{{ url_for('static', path='images/projects/' + project.image) }}" alt="{{ project.title }}" class="project-img">
+          {% if project.featured %}
+          <span class="featured-badge">Featured</span>
+          {% endif %}
+        </div>
+        <div class="project-content">
+          <span class="project-category">{{ project.category }}</span>
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-desc">{{ project.description }}</p>
+
+          <div class="tech-badges" style="margin-bottom: 1.5rem;">
+            {% for tag in project.tags[:4] %}
+            <span class="tech-badge">{{ tag }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="{{ project.repo_url }}" target="_blank" class="icon-link" title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+              <a href="{{ project.demo_url }}" target="_blank" class="icon-link" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+            <a href="{{ url_for('project_detail', project_id=project.id) }}" class="view-detail-btn">
+              Details <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
