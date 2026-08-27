@@ -37,27 +37,80 @@
     </div>
     {% endif %}
 
-    <!-- Detailed Content Layout -->
+    <!-- Detailed Content Layout (Individual Project Page Only) -->
     <div class="project-detail-grid">
       <div>
+        <!-- Overview -->
+        {% if project.long_description %}
         <div class="about-card" style="margin-bottom: 2rem;">
-          <h2 style="font-size: 1.5rem; margin-bottom: 1rem;" class="gradient-text">Overview & Objectives</h2>
+          <h2 style="font-size: 1.4rem; margin-bottom: 1rem;" class="gradient-text">
+            <i class="fa-solid fa-circle-info" style="margin-right: 0.5rem;"></i> Overview
+          </h2>
           <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">{{ project.long_description }}</p>
         </div>
+        {% endif %}
 
+        <!-- Problem Statement -->
+        {% if project.problem %}
         <div class="about-card" style="margin-bottom: 2rem;">
-          <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Key Features & Capability</h2>
+          <h2 style="font-size: 1.4rem; margin-bottom: 1rem; color: #ef4444;">
+            <i class="fa-solid fa-triangle-exclamation" style="margin-right: 0.5rem;"></i> Problem Statement
+          </h2>
+          <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">{{ project.problem }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Solution -->
+        {% if project.solution %}
+        <div class="about-card" style="margin-bottom: 2rem;">
+          <h2 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--accent-cyan);">
+            <i class="fa-solid fa-lightbulb" style="margin-right: 0.5rem;"></i> Proposed Solution
+          </h2>
+          <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">{{ project.solution }}</p>
+        </div>
+        {% endif %}
+
+        <!-- My Contribution -->
+        {% if project.my_contribution %}
+        <div class="about-card" style="margin-bottom: 2rem;">
+          <h2 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--accent-emerald);">
+            <i class="fa-solid fa-user-gear" style="margin-right: 0.5rem;"></i> My Contribution
+          </h2>
+          <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">{{ project.my_contribution }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Key Challenges -->
+        {% if project.challenges %}
+        <div class="about-card" style="margin-bottom: 2rem;">
+          <h2 style="font-size: 1.4rem; margin-bottom: 1rem; color: #f59e0b;">
+            <i class="fa-solid fa-shield-cat" style="margin-right: 0.5rem;"></i> Technical Challenges
+          </h2>
+          <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">{{ project.challenges }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Architecture & Implementation -->
+        {% if project.architecture_highlights %}
+        <div class="about-card" style="margin-bottom: 2rem;">
+          <h2 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--accent-purple);">
+            <i class="fa-solid fa-sitemap" style="margin-right: 0.5rem;"></i> Architecture & System Design
+          </h2>
+          <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">{{ project.architecture_highlights }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Key Features -->
+        {% if project.key_features %}
+        <div class="about-card">
+          <h2 style="font-size: 1.4rem; margin-bottom: 1rem;">
+            <i class="fa-solid fa-list-check" style="margin-right: 0.5rem;"></i> Key Features
+          </h2>
           <ul class="achievements-list">
             {% for feature in project.key_features %}
             <li style="font-size: 1.05rem; margin-bottom: 0.75rem;">{{ feature }}</li>
             {% endfor %}
           </ul>
-        </div>
-
-        {% if project.architecture_highlights %}
-        <div class="about-card">
-          <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Architecture & Implementation</h2>
-          <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">{{ project.architecture_highlights }}</p>
         </div>
         {% endif %}
       </div>
@@ -67,9 +120,11 @@
         <div class="about-card" style="margin-bottom: 2rem;">
           <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem;">Project Links</h3>
           <div style="display: flex; flex-direction: column; gap: 1rem;">
+            {% if project.demo_url %}
             <a href="{{ project.demo_url }}" target="_blank" class="btn btn-primary" style="justify-content: center;">
               <i class="fa-solid fa-external-link"></i> Live Product Demo
             </a>
+            {% endif %}
             <a href="{{ project.repo_url }}" target="_blank" class="btn btn-secondary" style="justify-content: center;">
               <i class="fa-brands fa-github"></i> Source Repository
             </a>
@@ -77,7 +132,7 @@
         </div>
 
         <div class="about-card">
-          <h3 style="font-size: 1.25rem; margin-bottom: 1rem;">Tech Stack</h3>
+          <h3 style="font-size: 1.25rem; margin-bottom: 1rem;">Technologies Used</h3>
           <div class="tech-badges" style="gap: 0.6rem;">
             {% for tag in project.tags %}
             <span class="tech-badge" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">{{ tag }}</span>
