@@ -853,16 +853,16 @@ a {
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: 1.75rem;
-  height: 280px;
+  height: 340px;
   display: flex;
   flex-direction: column;
 }
 
 .edu-card-scroll {
-  overflow-y: scroll;
+  overflow-y: auto;
   padding-right: 0.5rem;
   flex-grow: 1;
-  max-height: 165px;
+  margin-top: 0.5rem;
 }
 
 .edu-card-scroll::-webkit-scrollbar {
