@@ -35,13 +35,15 @@ SKILLS = [
             {"name": "Pandas & NumPy", "level": 96, "icon": "fa-table"},
             {"name": "Data Analysis, EDA & Data Cleaning", "level": 96, "icon": "fa-broom"},
             {"name": "Statistical Analysis", "level": 92, "icon": "fa-calculator"},
-            {"name": "SQL (MySQL, DuckDB, SQLite)", "level": 93, "icon": "fa-database"},
+            {"name": "SQL (PostgreSQL, MySQL, DuckDB, SQLite)", "level": 94, "icon": "fa-database"},
+            {"name": "Excel (Advanced Formulas & Power Query)", "level": 90, "icon": "fa-file-excel"},
         ]
     },
     {
         "category": "Visualization, MLOps & Tools",
         "icon": "fa-desktop",
         "skills": [
+            {"name": "Business Intelligence (Power BI, Tableau)", "level": 93, "icon": "fa-chart-pie"},
             {"name": "Data Visualization (Matplotlib, Seaborn)", "level": 95, "icon": "fa-chart-column"},
             {"name": "Streamlit & Interactive Apps", "level": 92, "icon": "fa-display"},
             {"name": "FastAPI & REST APIs", "level": 90, "icon": "fa-server"},
