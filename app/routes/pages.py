@@ -119,7 +119,7 @@ async def download_resume(type: str = "aiml"):
     if not os.path.exists(resume_path):
         raise HTTPException(status_code=404, detail="Resume PDF not found")
 
-    return FileResponse(resume_path, media_type="application/pdf", filename=filename)
+    return FileResponse(resume_path, media_type="application/pdf", content_disposition_type="inline")
 
 
 @pages_bp.post("/api/contact")
