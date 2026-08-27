@@ -36,39 +36,144 @@ PROJECTS = [
             "Employs Optuna for automated hyperparameter tuning and MLflow for experiment tracking, model lineage, and artifact logging."
         )
     },
-    {
-        "id": 2,
-        "slug": "generative-ai-rag-search",
-        "title": "Enterprise Generative AI & RAG Search System",
-        "tagline": "LLM-powered document intelligence and semantic search engine using LangChain and Vector DBs.",
-        "description": "A Retrieval-Augmented Generation (RAG) AI application that indexes complex PDF/text documentation and answers domain-specific natural language queries.",
-        "long_description": (
-            "Built with PyTorch, LangChain, FAISS Vector Index, and Llama 3 / OpenAI models. "
-            "This AI system enables users to ask complex questions across thousands of technical and financial documents, "
-            "delivering accurate context-aware responses with exact page-level source citations and zero hallucination."
+     {
+    "id": 2,
+    "slug": "youtube-ai-rag-chatbot",
+    "title": "YT Helper — YouTube AI RAG Chatbot & API",
+    "tagline": "Chat with any YouTube video using RAG, semantic search, and Llama 3.3 70B.",
+    "description": (
+        "A Retrieval-Augmented Generation (RAG) system that extracts YouTube video transcripts, "
+        "converts them into vector embeddings, retrieves relevant context, and generates grounded "
+        "answers using Groq-powered Llama 3.3 70B."
+    ),
+    "long_description": (
+        "YT Helper is an end-to-end Retrieval-Augmented Generation (RAG) application that enables "
+        "users to ask questions about YouTube videos without watching the entire video. The system "
+        "extracts available transcript content using YouTubeTranscriptApi, splits it into semantic "
+        "chunks, generates 384-dimensional dense embeddings locally with SentenceTransformers, "
+        "and persists them in ChromaDB. For every user query, cosine similarity search retrieves "
+        "the top 7 most relevant transcript chunks and supplies the retrieved context to "
+        "Groq Cloud's Llama 3.3 70B model for grounded response generation. The application also "
+        "provides FastAPI REST endpoints, an interactive dark-mode chatbot interface, and a "
+        "FastMCP server that exposes the RAG pipeline as tools for external AI agents."
+    ),
+
+    "category": "Generative AI",
+    "featured": True,
+
+    "image": "project-yt-helper.png",
+
+    "tags": [
+        "Python",
+        "FastAPI",
+        "RAG",
+        "LLMs",
+        "Llama 3.3 70B",
+        "Groq",
+        "ChromaDB",
+        "SentenceTransformers",
+        "Embeddings",
+        "Semantic Search",
+        "MCP",
+        "FastMCP"
+    ],
+
+    "demo_url": "",
+    "repo_url": "https://github.com/sAkhil2027/yt_video-rag-chatbot",
+
+    "metrics": [
+        {
+            "value": "384D",
+            "label": "Embedding Dimensions"
+        },
+        {
+            "value": "Top 7",
+            "label": "Context Chunks"
+        },
+        {
+            "value": "~5.6K",
+            "label": "Retrieved Context"
+        },
+        {
+            "value": "800 / 150",
+            "label": "Chunk / Overlap"
+        }
+    ],
+
+    "key_features": [
+        (
+            "Built a complete YouTube transcript ingestion pipeline using YouTubeTranscriptApi "
+            "with support for manual and auto-generated multilingual transcript tracks."
         ),
-        "category": "AI & NLP",
-        "featured": True,
-        "image": "project-ai-copilot.png",
-        "tags": ["Python", "PyTorch", "LangChain", "FAISS", "Llama 3", "OpenAI API"],
-        "demo_url": "https://rag-ai-demo.akhil.dev",
-        "repo_url": "https://github.com/akhil-data/generative-ai-rag-search",
-        "metrics": [
-            {"value": "96.4%", "label": "Retrieval Precision"},
-            {"value": "10k+", "label": "Docs Indexed"},
-            {"value": "< 280ms", "label": "Vector Search Latency"},
-            {"value": "4.2x", "label": "Research Speedup"}
-        ],
-        "key_features": [
-            "Semantic chunking and vector embedding pipeline using HuggingFace sentence-transformers.",
-            "Hybrid search combining BM25 keyword matching with Dense Vector embeddings for maximum recall.",
-            "Interactive Streamlit & FastAPI web interface with streaming token response rendering.",
-            "Custom guardrails filtering prompt injection and out-of-scope enterprise queries."
-        ],
-        "architecture_highlights": (
-            "Vector embeddings are stored in FAISS / Pinecone DB with HNSW index topology for sub-linear similarity search across millions of embedding vectors."
+        (
+            "Implemented a RAG pipeline using RecursiveCharacterTextSplitter with 800-character "
+            "chunks and 150-character overlap to preserve contextual continuity across transcript segments."
+        ),
+        (
+            "Generated 384-dimensional dense vector embeddings locally using "
+            "SentenceTransformers all-MiniLM-L6-v2 and persisted them in ChromaDB collections."
+        ),
+        (
+            "Developed a semantic retrieval engine using cosine similarity search to retrieve "
+            "the top 7 relevant transcript chunks, providing approximately 5,600 characters "
+            "of contextual information to the LLM."
+        ),
+        (
+            "Integrated Groq Cloud's Llama 3.3 70B model for high-speed, context-grounded "
+            "question answering over retrieved YouTube transcript content."
+        ),
+        (
+            "Developed FastAPI REST endpoints for video ingestion and question answering, "
+            "along with an interactive dark-mode chatbot frontend."
+        ),
+        (
+            "Implemented a FastMCP server exposing ingest_youtube_video and query_youtube_video "
+            "tools for integration with external AI agents such as Claude Desktop, Cursor, and Antigravity."
         )
-    },
+    ],
+
+    "architecture_highlights": (
+        "Uses a modular RAG architecture consisting of YouTube transcript extraction, semantic "
+        "text chunking, SentenceTransformer embeddings, persistent ChromaDB vector storage, "
+        "cosine similarity retrieval, and Groq Llama 3.3 70B generation. The backend is exposed "
+        "through FastAPI REST endpoints while FastMCP provides a separate agent integration layer. "
+        "Core functionality is separated into transcript extraction, embedding/vector storage, "
+        "retrieval, and LLM service modules for maintainability."
+    )
+},
+    # {
+    #     "id": 2,
+    #     "slug": "generative-ai-rag-search",
+    #     "title": "Enterprise Generative AI & RAG Search System",
+    #     "tagline": "LLM-powered document intelligence and semantic search engine using LangChain and Vector DBs.",
+    #     "description": "A Retrieval-Augmented Generation (RAG) AI application that indexes complex PDF/text documentation and answers domain-specific natural language queries.",
+    #     "long_description": (
+    #         "Built with PyTorch, LangChain, FAISS Vector Index, and Llama 3 / OpenAI models. "
+    #         "This AI system enables users to ask complex questions across thousands of technical and financial documents, "
+    #         "delivering accurate context-aware responses with exact page-level source citations and zero hallucination."
+    #     ),
+    #     "category": "AI & NLP",
+    #     "featured": True,
+    #     "image": "project-ai-copilot.png",
+    #     "tags": ["Python", "PyTorch", "LangChain", "FAISS", "Llama 3", "OpenAI API"],
+    #     "demo_url": "https://rag-ai-demo.akhil.dev",
+    #     "repo_url": "https://github.com/akhil-data/generative-ai-rag-search",
+    #     "metrics": [
+    #         {"value": "96.4%", "label": "Retrieval Precision"},
+    #         {"value": "10k+", "label": "Docs Indexed"},
+    #         {"value": "< 280ms", "label": "Vector Search Latency"},
+    #         {"value": "4.2x", "label": "Research Speedup"}
+    #     ],
+    #     "key_features": [
+    #         "Semantic chunking and vector embedding pipeline using HuggingFace sentence-transformers.",
+    #         "Hybrid search combining BM25 keyword matching with Dense Vector embeddings for maximum recall.",
+    #         "Interactive Streamlit & FastAPI web interface with streaming token response rendering.",
+    #         "Custom guardrails filtering prompt injection and out-of-scope enterprise queries."
+    #     ],
+    #     "architecture_highlights": (
+    #         "Vector embeddings are stored in FAISS / Pinecone DB with HNSW index topology for sub-linear similarity search across millions of embedding vectors."
+    #     )
+    # },
     {
         "id": 3,
         "slug": "bi-dashboard-sales-forecasting",
