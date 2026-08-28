@@ -1,0 +1,183 @@
+{
+  "resume.md": {
+    "source": "resume_master",
+    "doc_id": "resume-master",
+    "category": "Master Curriculum Vitae",
+    "title": "Akhil Vikram Singh - Master Composite Resume",
+    "technologies": [
+      "Python", "PyTorch", "Scikit-Learn", "FastAPI", "RAG", "LangChain",
+      "LangGraph", "FastMCP", "ChromaDB", "FAISS", "YOLOv8", "SQL", "Power BI", "Docker"
+    ]
+  },
+  "resumes/resume_ai_ml_engineer.md": {
+    "source": "resume_variant",
+    "doc_id": "resume-ai-ml-engineer",
+    "category": "AI/ML & RAG Targeted Resume",
+    "title": "Akhil Vikram Singh - AI/ML Engineer Resume",
+    "technologies": [
+      "Python", "PyTorch", "RAG", "LangChain", "LangGraph", "FastMCP",
+      "ChromaDB", "FAISS", "YOLOv8", "FastAPI", "Groq", "Docker"
+    ]
+  },
+  "resumes/resume_data_scientist.md": {
+    "source": "resume_variant",
+    "doc_id": "resume-data-scientist",
+    "category": "Data Science Targeted Resume",
+    "title": "Akhil Vikram Singh - Data Scientist Resume",
+    "technologies": [
+      "Python", "Scikit-Learn", "XGBoost", "Random Forest", "Pandas",
+      "NumPy", "SHAP", "Optuna", "MLflow", "Statistical Inference", "EDA"
+    ]
+  },
+  "resumes/resume_data_analyst.md": {
+    "source": "resume_variant",
+    "doc_id": "resume-data-analyst",
+    "category": "Data Analytics Targeted Resume",
+    "title": "Akhil Vikram Singh - Data Analyst Resume",
+    "technologies": [
+      "SQL", "PostgreSQL", "Power BI", "Tableau", "Python", "Pandas",
+      "Matplotlib", "Seaborn", "Excel", "Power Query", "Plotly", "EDA"
+    ]
+  },
+  "linkedin/about.md": {
+    "source": "linkedin_about",
+    "doc_id": "linkedin-about",
+    "category": "Social Profile Summary",
+    "title": "Akhil Vikram Singh - LinkedIn About & Summary",
+    "technologies": [
+      "Generative AI", "RAG", "Machine Learning", "Data Analysis", "FastMCP", "Power BI"
+    ]
+  },
+  "linkedin/experience.md": {
+    "source": "linkedin_experience",
+    "doc_id": "linkedin-experience",
+    "category": "Social Profile Work History",
+    "title": "Akhil Vikram Singh - LinkedIn Work & Hackathon Experience",
+    "technologies": [
+      "Python", "FastAPI", "RAG", "LangChain", "ChromaDB", "Llama 3.3 70B",
+      "Groq", "MCP", "PyTorch", "YOLOv8", "SQL", "PostgreSQL", "Power BI", "Streamlit", "XGBoost"
+    ]
+  },
+  "linkedin/education.md": {
+    "source": "linkedin_education",
+    "doc_id": "linkedin-education",
+    "category": "Social Profile Academic Degree",
+    "title": "Akhil Vikram Singh - LinkedIn Education (IIIT Bhagalpur)",
+    "technologies": [
+      "Machine Learning", "Data Mining", "Natural Language Processing", "Linear Algebra", "Python", "SQL"
+    ]
+  },
+  "linkedin/skills.md": {
+    "source": "linkedin_skills",
+    "doc_id": "linkedin-skills",
+    "category": "Social Profile Endorsements",
+    "title": "Akhil Vikram Singh - LinkedIn Skills & Endorsements",
+    "technologies": [
+      "Python", "C++", "SQL", "PyTorch", "Scikit-Learn", "RAG", "LangChain",
+      "LangGraph", "FastMCP", "FAISS", "ChromaDB", "FastAPI", "Docker", "Power BI", "Tableau"
+    ]
+  },
+  "linkedin/achievements.md": {
+    "source": "linkedin_achievements",
+    "doc_id": "linkedin-achievements",
+    "category": "Social Profile Accomplishments",
+    "title": "Akhil Vikram Singh - LinkedIn Accomplishments & Certifications",
+    "technologies": [
+      "ServiceNow", "AWS Machine Learning", "Prompt Engineering", "Python", "SQL", "XGBoost"
+    ]
+  },
+  "experience.md": {
+    "source": "experience",
+    "doc_id": "experience-overview",
+    "category": "Hackathons & Professional Roles",
+    "title": "Akhil Vikram Singh - Work & Hackathon Experience",
+    "technologies": [
+      "Python", "FastAPI", "RAG", "LangChain", "ChromaDB", "Llama 3.3 70B",
+      "Groq", "MCP", "PyTorch", "YOLOv8", "SQL", "PostgreSQL", "Power BI", "Streamlit", "XGBoost"
+    ]
+  },
+  "skills.md": {
+    "source": "skills",
+    "doc_id": "skills-matrix",
+    "category": "Technical Competencies",
+    "title": "Akhil Vikram Singh - Technical Skills Matrix",
+    "technologies": [
+      "Python", "C++", "SQL", "PyTorch", "Scikit-Learn", "RAG", "LangChain",
+      "LangGraph", "FastMCP", "FAISS", "ChromaDB", "FastAPI", "Docker", "Power BI", "Tableau"
+    ]
+  },
+  "education.md": {
+    "source": "education",
+    "doc_id": "education-iiit-bhagalpur",
+    "category": "Academic Degree",
+    "title": "B.Tech in Mechatronics & Automation - IIIT Bhagalpur",
+    "technologies": [
+      "Machine Learning", "Data Mining", "Natural Language Processing", "Linear Algebra",
+      "Data Structures & Algorithms", "Python", "SQL"
+    ]
+  },
+  "projects/customer-churn-prediction-ml.md": {
+    "source": "project",
+    "doc_id": "customer-churn-prediction-ml",
+    "category": "Machine Learning",
+    "title": "Customer Churn Prediction & Lifetime Value ML Engine",
+    "technologies": ["Python", "Scikit-Learn", "XGBoost", "Pandas", "FastAPI", "Streamlit"],
+    "github": "https://github.com/akhil-data/customer-churn-ml",
+    "demo": "https://churn-ml-demo.akhil.dev"
+  },
+  "projects/youtube-ai-rag-chatbot.md": {
+    "source": "project",
+    "doc_id": "youtube-ai-rag-chatbot",
+    "category": "Generative AI",
+    "title": "YT Helper — YouTube AI RAG Chatbot & API",
+    "technologies": [
+      "Python", "FastAPI", "RAG", "LLMs", "Llama 3.3 70B", "Groq",
+      "ChromaDB", "SentenceTransformers", "Embeddings", "Semantic Search", "MCP", "FastMCP"
+    ],
+    "github": "https://github.com/sAkhil2027/yt_video-rag-chatbot"
+  },
+  "projects/laptop-price-prediction.md": {
+    "source": "project",
+    "doc_id": "laptop-price-prediction",
+    "category": "Machine Learning",
+    "title": "Laptop Price Prediction — Machine Learning",
+    "technologies": [
+      "Python", "Pandas", "NumPy", "Scikit-learn", "Machine Learning",
+      "Random Forest", "Regression", "Feature Engineering", "EDA"
+    ],
+    "github": "https://github.com/sAkhil2027/Laptop-Price-Prediction"
+  },
+  "projects/multi-utility-rag-chatbot.md": {
+    "source": "project",
+    "doc_id": "multi-utility-rag-chatbot",
+    "category": "Generative AI",
+    "title": "Multi Utility RAG Chatbot — LangGraph & FAISS",
+    "technologies": [
+      "Python", "Streamlit", "LangGraph", "LangChain", "RAG", "LLMs",
+      "OpenRouter", "GPT-4o-mini", "FAISS", "HuggingFace", "Embeddings", "SQLite"
+    ],
+    "github": "https://github.com/sAkhil2027/panscience-Multi-Utility-RAG-Chatbot-"
+  },
+  "projects/diwali-sales-analysis.md": {
+    "source": "project",
+    "doc_id": "diwali-sales-analysis",
+    "category": "Data Analysis",
+    "title": "Diwali Sales Analysis — EDA & Business Insights",
+    "technologies": [
+      "Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "EDA",
+      "Data Analysis", "Data Cleaning", "Data Visualization", "Business Analytics"
+    ],
+    "github": "https://github.com/sAkhil2027/diwali-sale-anaysis"
+  },
+  "projects/iphone-ecommerce-sales-analysis.md": {
+    "source": "project",
+    "doc_id": "iphone-ecommerce-sales-analysis",
+    "category": "Data Analysis",
+    "title": "iPhone E-Commerce Sales Analysis — EDA & Business Insights",
+    "technologies": [
+      "Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "EDA",
+      "Data Analysis", "Feature Engineering", "Pricing Analysis", "E-Commerce Analytics"
+    ],
+    "github": "https://github.com/sAkhil2027/iphone_dataset_analysis"
+  }
+}
