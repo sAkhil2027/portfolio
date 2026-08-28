@@ -3,11 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{% block meta_description %}{{ profile.name }} - {{ profile.title }}. {{ profile.tagline }}{% endblock %}">
-  <meta name="keywords" content="Portfolio, Full-Stack Engineer, Python, Flask, FastAPI, React, TypeScript, Cloud Architecture, Akhil">
-  <meta name="author" content="{{ profile.name }}">
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>{% block title %}{{ profile.full_name }} | {{ profile.title }}{% endblock %}</title>
+  <meta name="title" content="{% block meta_title %}{{ profile.full_name }} | {{ profile.title }}{% endblock %}">
+  <meta name="description" content="{% block meta_description %}Portfolio of {{ profile.full_name }} - {{ profile.title }}. {{ profile.tagline }}{% endblock %}">
+  <meta name="keywords" content="Akhil Vikram Singh, AI/ML Engineer, Data Scientist, Data Analyst, Machine Learning, Python, FastAPI, RAG, Power BI, SQL, Portfolio">
+  <meta name="author" content="{{ profile.full_name }}">
+  <meta name="robots" content="index, follow">
 
-  <title>{% block title %}{{ profile.name }} | {{ profile.title }}{% endblock %}</title>
+  <!-- Open Graph / Facebook / LinkedIn Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% block og_title %}{{ profile.full_name }} | {{ profile.title }}{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Portfolio of {{ profile.full_name }} - {{ profile.title }}. {{ profile.tagline }}{% endblock %}">
+  <meta property="og:site_name" content="{{ profile.full_name }} Portfolio">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block twitter_title %}{{ profile.full_name }} | {{ profile.title }}{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}Portfolio of {{ profile.full_name }} - {{ profile.title }}. {{ profile.tagline }}{% endblock %}">
+
+  <!-- JSON-LD Structured Data Schema for Google Search Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ profile.full_name }}",
+    "jobTitle": "{{ profile.title }}",
+    "email": "mailto:{{ profile.email }}",
+    "sameAs": [
+      "{{ profile.github }}",
+      "{{ profile.linkedin }}"
+    ],
+    "knowsAbout": [
+      "Machine Learning",
+      "Data Science",
+      "Data Analytics",
+      "Generative AI",
+      "Python",
+      "FastAPI",
+      "SQL",
+      "Power BI"
+    ]
+  }
+  </script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,7 +93,7 @@
           <h2 style="font-size: 2rem; margin-bottom: 1rem;">Page Not Found</h2>
           <p style="color: var(--text-muted); margin-bottom: 2rem;">The page or project you are looking for doesn't exist.</p>
           <a href="{{ url_for('index') }}" class="btn btn-primary">
-            <i class="fa-solid fa-arrow-left"></i> Return Home
+            <i class="fa-solid fa-house"></i> Return Home
           </a>
         </div>
       </section>
@@ -62,10 +101,10 @@
       <section class="section" style="padding-top: 12rem; text-align: center;">
         <div class="container">
           <h1 class="gradient-text" style="font-size: 6rem; font-weight: 900;">500</h1>
-          <h2 style="font-size: 2rem; margin-bottom: 1rem;">Internal Server Error</h2>
-          <p style="color: var(--text-muted); margin-bottom: 2rem;">Something went wrong on our end. Please try again later.</p>
-          <a href="{{ url_for('pages.index') }}" class="btn btn-primary">
-            <i class="fa-solid fa-arrow-left"></i> Return Home
+          <h2 style="font-size: 2rem; margin-bottom: 1rem;">Server Error</h2>
+          <p style="color: var(--text-muted); margin-bottom: 2rem;">Something went wrong on our server. Please try again later.</p>
+          <a href="{{ url_for('index') }}" class="btn btn-primary">
+            <i class="fa-solid fa-house"></i> Return Home
           </a>
         </div>
       </section>
@@ -77,35 +116,100 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>© 2026 {{ profile.name }}. Built with Python, Flask, Jinja2 & Modern CSS.</p>
-      <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-dim);">Designed with high aesthetics & glassmorphism.</p>
+      <p>&copy; 2026 {{ profile.full_name }}. Built with FastAPI, Jinja2 & Glassmorphism CSS.</p>
     </div>
   </footer>
 
-  <!-- Base JS Scripts -->
+  <!-- App JavaScript for Mobile Menu, Smooth Scroll & Form Interactivity -->
   <script>
-    // Mobile navigation toggle
-    const navToggle = document.getElementById('nav-toggle');
-    const navLinks = document.getElementById('nav-links');
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile Navigation Toggle
+      const navToggle = document.getElementById('nav-toggle');
+      const navLinks = document.getElementById('nav-links');
 
-    if (navToggle && navLinks) {
-      navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        if (navLinks.classList.contains('active')) {
-          navLinks.style.display = 'flex';
-          navLinks.style.flexDirection = 'column';
-          navLinks.style.position = 'absolute';
-          navLinks.style.top = '100%';
-          navLinks.style.left = '0';
-          navLinks.style.width = '100%';
-          navLinks.style.background = 'rgba(9, 13, 22, 0.95)';
-          navLinks.style.padding = '1.5rem 2rem';
+      if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+      }
+
+      // Contact Form AJAX Handler
+      const contactForm = document.getElementById('contact-form');
+      const toast = document.getElementById('toast');
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const formData = new FormData(contactForm);
+          const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            subject: formData.get('subject'),
+            message: formData.get('message')
+          };
+
+          try {
+            const res = await fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            });
+
+            const result = await res.json();
+            if (toast) {
+              toast.textContent = result.message;
+              toast.className = result.success ? 'toast-msg toast-success' : 'toast-msg toast-error';
+              toast.style.display = 'block';
+              setTimeout(() => { toast.style.display = 'none'; }, 6000);
+            }
+
+            if (result.success) {
+              contactForm.reset();
+            }
+          } catch (err) {
+            if (toast) {
+              toast.textContent = "Failed to send message. Please try again.";
+              toast.className = 'toast-msg toast-error';
+              toast.style.display = 'block';
+            }
+          }
+        });
+      }
+    });
+
+    // Skill Filter Handler
+    function filterSkills(category) {
+      const cards = document.querySelectorAll('#skills-grid .skill-card');
+      const tabs = document.querySelectorAll('.skills-tabs .tab-btn');
+
+      tabs.forEach(tab => tab.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
         } else {
-          navLinks.style.display = '';
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Projects Filter Handler
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('#projects-grid .project-card');
+      const buttons = document.querySelectorAll('.project-filters .filter-btn');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
         }
       });
     }
   </script>
-  {% block extra_scripts %}{% endblock %}
 </body>
 </html>

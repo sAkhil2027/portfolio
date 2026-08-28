@@ -41,7 +41,7 @@ if os.path.exists(ENV_FILE):
 SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 SMTP_USER = os.getenv("SMTP_USER", "")
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "").replace(" ", "")
 NOTIFICATION_EMAIL = os.getenv("NOTIFICATION_EMAIL", "sakhil2027@gmail.com")
 
 
