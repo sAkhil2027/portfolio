@@ -1,48 +1,74 @@
 """
-Experience data module for Akhil - Data Science & AI/ML roles.
+Experience data module for Akhil - Data Science, AI/ML Roles, Hackathons & Competitions.
+Standardized for Pydantic Experience Schema and RAG Document Ingestion.
 """
 
 EXPERIENCE = [
     {
-        "role": "Senior Data Scientist & AI Engineer",
-        "company": "Cognitive Insights Lab",
-        "period": "2023 - Present",
-        "location": "Bangalore, India",
+        "company": "Cognitive AI Labs",
+        "role": "AI/ML Engineer & RAG System Developer",
         "type": "Full-Time",
-        "description": "Leading predictive modeling projects, generative AI search integrations, and enterprise customer analytics.",
+        "start_date": "2026",
+        "end_date": "Present",
+        "year": "2026",
+        "period": "2026 - Present",
+        "location": "Remote / India",
+        "description": "Leading RAG pipeline development, agentic workflows with Model Context Protocol (MCP), and LLM fine-tuning.",
         "achievements": [
-            "Developed an XGBoost churn prediction model analyzing 25M+ customer interactions, reducing quarterly churn by 18%.",
-            "Architected a Retrieval-Augmented Generation (RAG) system with LangChain & FAISS, accelerating internal document search by 4x.",
-            "Deployed automated ML pipelines with MLflow and FastAPI microservices, serving 500k+ daily inference requests.",
-            "Created interactive executive Power BI dashboards monitoring retention, revenue, and customer lifetime value (CLV)."
+            "Architected YouTube AI RAG system with ChromaDB and Groq Llama 3.3 70B, reducing transcript analysis time by 80%.",
+            "Developed FastMCP tools for AI agent integrations (Cursor, Claude Desktop, Antigravity) supporting automated tool use.",
+            "Engineered end-to-end FastAPI microservices serving real-time vector retrieval and LLM responses."
         ],
-        "technologies": ["Python", "PyTorch", "Scikit-Learn", "SQL", "LangChain", "Power BI", "FastAPI", "MLflow"]
+        "technologies": ["Python", "FastAPI", "RAG", "LangChain", "ChromaDB", "Llama 3.3 70B", "Groq", "MCP", "Docker"]
     },
     {
-        "role": "Data Analyst & ML Specialist",
-        "company": "Apex Analytics Group",
-        "period": "2021 - 2023",
-        "location": "Bangalore, India",
-        "type": "Full-Time",
-        "description": "Conducted exploratory data analysis, statistical modeling, and automated KPI reporting for enterprise clients.",
+        "company": "Smart India Hackathon (SIH)",
+        "role": "SIH National Finalist & Lead AI Developer",
+        "type": "Hackathon",
+        "start_date": "2025",
+        "end_date": "2026",
+        "year": "2025 - 2026",
+        "period": "2025 - 2026",
+        "location": "Ministry of Education / Campus",
+        "description": "Selected twice by IIIT Bhagalpur to represent the institute at the Smart India Hackathon national competition, building transactional data pipelines and Power BI dashboards.",
         "achievements": [
-            "Analyzed 50M+ rows of e-commerce transaction data using SQL and Pandas to uncover product bundling opportunities, raising AOV by 14%.",
-            "Designed and implemented automated time-series sales forecasting models using Prophet and ARIMA with 94%+ accuracy.",
-            "Built 12+ real-time Tableau dashboards integrated with PostgreSQL data warehouses."
+            "Selected twice by IIIT Bhagalpur for national-level SIH hackathons in both 2025 and 2026.",
+            "Processed 25M+ rows of customer transaction data using SQL and Pandas to uncover churn risks.",
+            "Designed executive Power BI & Tableau dashboards with automated refresh pipelines connected to PostgreSQL data warehouses."
         ],
-        "technologies": ["Python", "Pandas", "NumPy", "SQL", "Tableau", "Prophet", "Matplotlib", "Seaborn"]
+        "technologies": ["Python", "SQL", "PostgreSQL", "Pandas", "Power BI", "Tableau", "FastAPI"]
     },
     {
-        "role": "Junior Data Analyst",
-        "company": "DataMetrics Solutions",
-        "period": "2020 - 2021",
-        "location": "Remote",
-        "type": "Full-Time",
-        "description": "Performed data cleaning, ETL pipeline validation, and statistical reporting.",
+        "company": "National Data Science & AI Hackathon",
+        "role": "1st Place Winner & Lead AI Developer",
+        "type": "Hackathon",
+        "start_date": "2025",
+        "end_date": "2025",
+        "year": "2025",
+        "period": "2025",
+        "location": "National Competition",
+        "description": "Built a real-time predictive analytics & automated forecasting engine during 48-hour intensive hackathon.",
         "achievements": [
-            "Automated weekly data extraction, transformation, and Excel/PDF reporting scripts using Python and Pandas.",
-            "Conducted A/B testing statistical analysis for digital marketing campaigns, identifying top-performing target demographics."
+            "Awarded 1st place among 120+ participant teams for innovative automated ML & time-series forecasting pipeline.",
+            "Engineered an interactive Streamlit application displaying real-time anomaly detection and predictive alerts."
         ],
-        "technologies": ["Python", "Pandas", "SQL", "Excel / Power Query", "A/B Testing", "Statsmodels"]
+        "technologies": ["Python", "Prophet", "Streamlit", "XGBoost", "FastAPI", "Plotly", "Git"]
+    },
+    {
+        "company": "IIIT Bhagalpur Hackathon",
+        "role": "Top 10 Rank & AI Solution Architect",
+        "type": "Hackathon",
+        "start_date": "2025",
+        "end_date": "2025",
+        "year": "2025",
+        "period": "2025",
+        "location": "IIIT Bhagalpur",
+        "description": "Participated in an intra-college hackathon with 500+ participants and secured a Top 10 position building deep neural network vision models.",
+        "achievements": [
+            "Secured Top 10 position among 500+ participants in intra-college hackathon competition.",
+            "Trained computer vision defect inspection models using PyTorch and YOLOv8 operating at 35 FPS.",
+            "Implemented SHAP model interpretability dashboards for complex ensemble machine learning classifiers."
+        ],
+        "technologies": ["Python", "PyTorch", "YOLOv8", "Scikit-Learn", "SHAP", "OpenCV", "Pandas", "Matplotlib"]
     }
 ]
