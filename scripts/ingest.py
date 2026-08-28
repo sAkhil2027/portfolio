@@ -1,7 +1,6 @@
 """
-Data & Knowledge Ingestion Script for Akhil Portfolio.
-Loads structured JSON data and markdown documents from knowledge/
-and validates structured datasets & document metadata into Pydantic models.
+Data & Knowledge Ingestion Master Script for Akhil Portfolio.
+Pipeline: Raw Data -> Load -> Validate -> Normalize -> Generate Knowledge Files -> Save & Output RAG Documents.
 """
 
 import json
@@ -11,6 +10,7 @@ import sys
 # Ensure root workspace is on python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+from scripts.normalize import normalize_and_export
 from knowledge.schemas import (
     ProfileSchema,
     Project,
@@ -43,10 +43,21 @@ def load_markdown_file(filepath):
 
 def ingest_all_knowledge():
     """
-    Ingests all structured datasets and document files into a validated knowledge repository with RAG metadata.
+    Unified Master Pipeline:
+    1. Raw Data -> Load raw data modules in data/
+    2. Validate -> Validate against Pydantic schemas in knowledge/schemas.py
+    3. Normalize -> Standardize data fields
+    4. Generate & Save -> Export knowledge/structured/*.json datasets
+    5. Tag & Output -> Attach RAG DocumentMetadata to knowledge/documents/*.md
     """
-    print("Ingesting and validating structured knowledge datasets with Pydantic...")
+    print("--- Starting Master Knowledge Ingestion Pipeline ---")
+    
+    # Step 1-4: Raw Data -> Load -> Validate -> Normalize -> Generate JSONs -> Save
+    print("Step 1-4: Normalizing raw data modules, validating Pydantic schemas, and exporting JSON datasets...")
+    normalize_and_export()
 
+    # Step 5: Load structured JSONs & Document files, attach RAG DocumentMetadata
+    print("Step 5: Ingesting Markdown document files and attaching RAG DocumentMetadata...")
     profile_raw = load_json_file(STRUCTURED_DIR, "profile.json")
     projects_raw = load_json_file(STRUCTURED_DIR, "projects.json")
     experience_raw = load_json_file(STRUCTURED_DIR, "experience.json")
@@ -65,7 +76,6 @@ def ingest_all_knowledge():
         "certifications": [CertificationSchema(**c) for c in certifications_raw] if certifications_raw else [],
     }
 
-    print("Ingesting document files and attaching RAG DocumentMetadata...")
     metadata_map = load_json_file(DOCUMENTS_DIR, "metadata.json") or {}
     rag_documents = []
 
@@ -80,7 +90,8 @@ def ingest_all_knowledge():
                     meta = DocumentMetadata(**metadata_map[rel_path])
                     rag_documents.append(RAGDocument(content=content, metadata=meta))
 
-    print(f"Ingestion Complete: Validated {len(structured_knowledge)} structured datasets and {len(rag_documents)} RAG documents with rich metadata.")
+    print(f"[SUCCESS] Master Ingestion Complete: Validated {len(structured_knowledge)} structured datasets and {len(rag_documents)} RAG documents with rich metadata.")
+    print("--------------------------------------------------")
     return {
         "structured": structured_knowledge,
         "rag_documents": rag_documents
