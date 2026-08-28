@@ -1,10 +1,11 @@
 """
-Profile data module for Akhil - Data Analyst, Data Scientist & AI/ML Specialist.
+Profile data module for Akhil Vikram Singh - Data Analyst, Data Scientist & AI/ML Specialist.
 """
 
 PROFILE = {
     "name": "Akhil",
-    "title": "Data Scientist, Data Analyst & AI/ML Specialist",
+    "full_name": "Akhil Vikram Singh",
+    "title": "AI/ML Engineer, Data Scientist & Data Analyst",
     "tagline": "Transforming complex datasets into actionable business insights, building predictive ML models, and deploying intelligent AI solutions.",
     "bio": (
         "I am a Data Scientist and AI/ML Specialist with expertise in exploratory data analysis (EDA), "
@@ -15,7 +16,7 @@ PROFILE = {
     "email": "sakhilvikram@gmail.com",
     "location": "Bangalore, India",
     "status": "Available for Data Science & AI roles",
-    "avatar_text": "AK",
+    "avatar_text": "AVS",
     "github": "https://github.com/sAkhil2027",
     "linkedin": "https://www.linkedin.com/in/akhilvikramsingh/",
     "twitter": "https://twitter.com/your-actual-handle",
