@@ -1,9 +1,10 @@
 """
 Data Normalization & Export Script for Akhil Portfolio.
 Reads raw data modules from data/, normalizes all skills and technical terms via CANONICAL_TERMS_MAP,
-validates them with Pydantic schemas, and exports normalized JSON files to knowledge/structured/.
+validates them with Pydantic schemas, and exports normalized JSON files and knowledge/manifest.json.
 """
 
+from datetime import datetime, timezone
 import json
 import os
 import sys
@@ -24,6 +25,8 @@ from knowledge.schemas import (
     Education,
     CertificationSchema,
     AchievementSchema,
+    KnowledgeManifest,
+    ManifestStatistics,
 )
 
 # Comprehensive Canonical Term Normalization Mapping Dictionary
@@ -142,8 +145,12 @@ ACHIEVEMENTS = [
 ]
 
 def normalize_and_export():
-    output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "knowledge", "structured"))
-    os.makedirs(output_dir, exist_ok=True)
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    structured_dir = os.path.join(base_dir, "knowledge", "structured")
+    knowledge_dir = os.path.join(base_dir, "knowledge")
+    documents_dir = os.path.join(base_dir, "knowledge", "documents")
+
+    os.makedirs(structured_dir, exist_ok=True)
 
     # Normalize projects technical terms
     normalized_projects = []
@@ -183,10 +190,47 @@ def normalize_and_export():
     }
 
     for filename, data in export_map.items():
-        filepath = os.path.join(output_dir, filename)
+        filepath = os.path.join(structured_dir, filename)
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
         print(f"[Exported & Validated]: {filepath}")
+
+    # Count total unique skills across categories
+    total_skills_count = sum(len(s.skills) for s in skills_model)
+
+    # Count total RAG Markdown documents
+    doc_count = 0
+    if os.path.exists(documents_dir):
+        for root, _, files in os.walk(documents_dir):
+            for fname in files:
+                if fname.endswith(".md"):
+                    doc_count += 1
+
+    # Generate Knowledge Manifest
+    manifest_model = KnowledgeManifest(
+        version="1.0.0",
+        last_updated=datetime.now(timezone.utc).isoformat(),
+        sources=[
+            "profile", "projects", "experience", "skills",
+            "education", "achievements", "certifications",
+            "resume", "resumes", "linkedin", "documents/projects"
+        ],
+        statistics=ManifestStatistics(
+            projects=len(projects_model),
+            experiences=len(experience_model),
+            skill_categories=len(skills_model),
+            total_skills=total_skills_count,
+            education_entries=len(education_model),
+            achievements=len(achievements_model),
+            certifications=len(certifications_model),
+            total_rag_documents=doc_count,
+        )
+    )
+
+    manifest_path = os.path.join(knowledge_dir, "manifest.json")
+    with open(manifest_path, "w", encoding="utf-8") as f:
+        json.dump(manifest_model.model_dump(), f, indent=2, ensure_ascii=False)
+    print(f"[Exported Knowledge Manifest]: {manifest_path}")
 
 if __name__ == "__main__":
     normalize_and_export()

@@ -1,5 +1,5 @@
 """
-Pydantic Schemas for Akhil Portfolio Data Entities & RAG Metadata.
+Pydantic Schemas for Akhil Portfolio Data Entities, Knowledge Manifest & RAG Metadata.
 Provides strict type-checking, schema validation, and metadata tagging for vector RAG workflows.
 """
 
@@ -153,6 +153,24 @@ class AchievementSchema(BaseModel):
     organization: str
     year: str
     description: str
+
+
+class ManifestStatistics(BaseModel):
+    projects: int
+    experiences: int
+    skill_categories: int
+    total_skills: int
+    education_entries: int
+    achievements: int
+    certifications: int
+    total_rag_documents: int
+
+
+class KnowledgeManifest(BaseModel):
+    version: str = "1.0.0"
+    last_updated: str
+    sources: List[str]
+    statistics: ManifestStatistics
 
 
 class DocumentMetadata(BaseModel):

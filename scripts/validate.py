@@ -19,6 +19,7 @@ from knowledge.schemas import (
     Education,
     CertificationSchema,
     AchievementSchema,
+    KnowledgeManifest,
     DocumentMetadata,
 )
 
@@ -99,7 +100,22 @@ def validate_portfolio_structure():
             print(f"[FAIL] Missing Structured JSON: {rel_path}")
             all_passed = False
 
-    # 3. Check Document Files & Metadata Map
+    # 3. Check Knowledge Manifest (knowledge/manifest.json)
+    manifest_file = os.path.join(BASE_DIR, "knowledge/manifest.json")
+    if os.path.exists(manifest_file):
+        try:
+            with open(manifest_file, "r", encoding="utf-8") as f:
+                manifest_data = json.load(f)
+            manifest_obj = KnowledgeManifest(**manifest_data)
+            print(f"[OK] Knowledge Manifest Validated (v{manifest_obj.version}, {manifest_obj.statistics.total_rag_documents} RAG docs): knowledge/manifest.json")
+        except ValidationError as ve:
+            print(f"[FAIL] Invalid Knowledge Manifest Schema:\n{ve}")
+            all_passed = False
+    else:
+        print("[FAIL] Missing Knowledge Manifest: knowledge/manifest.json")
+        all_passed = False
+
+    # 4. Check Document Files & Metadata Map
     metadata_file = os.path.join(BASE_DIR, "knowledge/documents/metadata.json")
     metadata_map = {}
     if os.path.exists(metadata_file):

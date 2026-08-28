@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-08-28T16:52:14.500702+00:00",
+  "sources": [
+    "profile",
+    "projects",
+    "experience",
+    "skills",
+    "education",
+    "achievements",
+    "certifications",
+    "resume",
+    "resumes",
+    "linkedin",
+    "documents/projects"
+  ],
+  "statistics": {
+    "projects": 6,
+    "experiences": 4,
+    "skill_categories": 4,
+    "total_skills": 25,
+    "education_entries": 1,
+    "achievements": 5,
+    "certifications": 5,
+    "total_rag_documents": 18
+  }
+}
