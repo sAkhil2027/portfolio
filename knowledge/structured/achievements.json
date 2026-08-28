@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title": "Smart India Hackathon (SIH) National Finalist Selection",
+    "organization": "IIIT Bhagalpur / Ministry of Education",
+    "year": "2025 & 2026",
+    "description": "Selected twice by IIIT Bhagalpur to represent the institute at the Smart India Hackathon national competition."
+  },
+  {
+    "id": 2,
+    "title": "National Data Science & AI Hackathon Winner",
+    "organization": "National Data Science Competition",
+    "year": "2025",
+    "description": "Secured 1st place among 120+ participant teams for building an end-to-end automated ML & time-series forecasting pipeline."
+  },
+  {
+    "id": 3,
+    "title": "Top 10 Rank - Intra-College Hackathon",
+    "organization": "IIIT Bhagalpur",
+    "year": "2025",
+    "description": "Secured Top 10 position out of 500+ participants in an intensive competitive hackathon."
+  },
+  {
+    "id": 4,
+    "title": "Gold Medalist - Mathematics Olympiad",
+    "organization": "School Level Mathematics Olympiad",
+    "year": "2022",
+    "description": "Awarded Gold Medal demonstrating exceptional mathematical reasoning and analytical problem-solving skills."
+  },
+  {
+    "id": 5,
+    "title": "500+ Data Structures & Algorithms Solved",
+    "organization": "LeetCode / Coding Platforms",
+    "year": "2023 - Present",
+    "description": "Solved over 500 DSA problems strengthening core computational thinking and algorithm optimization."
+  }
+]
