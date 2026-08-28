@@ -5,6 +5,11 @@
     "description": "An end-to-end Machine Learning pipeline analyzing 25M+ customer transaction rows to predict subscription churn risk and calculate Customer Lifetime Value (CLV).",
     "problem": "High quarterly subscriber churn of 12% causing revenue leakage across 25M+ customer accounts without early warning signals.",
     "solution": "Built an automated XGBoost predictive ML pipeline that flags high-risk churn signals 30 days prior to cancellation and triggers retention offers.",
+    "categories": [
+      "Machine Learning",
+      "Backend",
+      "Predictive Analytics"
+    ],
     "technologies": [
       "Python",
       "Scikit-Learn",
@@ -45,10 +50,17 @@
     "description": "A Retrieval-Augmented Generation (RAG) system that extracts YouTube video transcripts, converts them into vector embeddings, retrieves relevant context, and generates grounded answers using Groq-powered Llama 3.3 70B.",
     "problem": "Users spend hours manually searching long YouTube videos to find specific answers or technical explanations.",
     "solution": "Developed a full RAG pipeline with ChromaDB vector storage and Groq Llama 3.3 70B to instantly retrieve exact transcript context and generate grounded answers.",
+    "categories": [
+      "Generative AI",
+      "RAG",
+      "NLP",
+      "Backend",
+      "AI Agent"
+    ],
     "technologies": [
       "Python",
       "FastAPI",
-      "RAG",
+      "Retrieval-Augmented Generation (RAG)",
       "LLMs",
       "Llama 3.3 70B",
       "Groq",
@@ -56,7 +68,7 @@
       "SentenceTransformers",
       "Embeddings",
       "Semantic Search",
-      "MCP",
+      "Model Context Protocol (MCP)",
       "FastMCP"
     ],
     "features": [
@@ -92,16 +104,21 @@
     "description": "An end-to-end Machine Learning system that predicts laptop prices from hardware and specifications using data preprocessing, feature engineering, Scikit-learn pipelines, and a Random Forest Regressor.",
     "problem": "Laptop prices vary significantly based on hardware specifications, making it difficult to estimate a fair market price manually.",
     "solution": "Developed a machine learning regression pipeline that preprocesses laptop specifications, engineers meaningful hardware features, and predicts laptop prices using Random Forest regression.",
+    "categories": [
+      "Machine Learning",
+      "Predictive Analytics",
+      "Data Preprocessing"
+    ],
     "technologies": [
       "Python",
       "Pandas",
       "NumPy",
-      "Scikit-learn",
+      "Scikit-Learn",
       "Machine Learning",
       "Random Forest",
       "Regression",
       "Feature Engineering",
-      "EDA",
+      "Exploratory Data Analysis (EDA)",
       "Data Preprocessing"
     ],
     "features": [
@@ -136,17 +153,24 @@
     "description": "An advanced Retrieval-Augmented Generation (RAG) chatbot built with LangGraph, LangChain, FAISS, OpenRouter, and Streamlit that enables users to interact with uploaded PDFs while also using intelligent tools such as web search and calculation.",
     "problem": "Users need a single conversational interface that can answer questions from their documents while also handling general queries requiring web search or calculations.",
     "solution": "Built a stateful LangGraph-based AI agent that combines PDF RAG, semantic retrieval, web search, calculator tools, persistent conversation memory, and streaming LLM responses.",
+    "categories": [
+      "Generative AI",
+      "RAG",
+      "NLP",
+      "Full Stack",
+      "AI Agent"
+    ],
     "technologies": [
       "Python",
       "Streamlit",
       "LangGraph",
       "LangChain",
-      "RAG",
+      "Retrieval-Augmented Generation (RAG)",
       "LLMs",
       "OpenRouter",
       "GPT-4o-mini",
       "FAISS",
-      "HuggingFace",
+      "HuggingFace Embeddings",
       "Embeddings",
       "SQLite"
     ],
@@ -182,13 +206,18 @@
     "description": "An end-to-end Exploratory Data Analysis (EDA) project that analyzes Diwali sales data using Python, Pandas, Matplotlib, and Seaborn to identify customer demographics, purchasing behavior, geographic trends, occupation patterns, and product performance.",
     "problem": "Raw sales data contains multiple customer, geographic, demographic, and product dimensions, making it difficult to identify meaningful purchasing patterns directly.",
     "solution": "Built a complete EDA workflow that cleans the sales dataset and analyzes customer demographics, geographic performance, occupations, product categories, and order behavior.",
+    "categories": [
+      "Data Analytics",
+      "EDA",
+      "Business Intelligence"
+    ],
     "technologies": [
       "Python",
       "Pandas",
       "NumPy",
       "Matplotlib",
       "Seaborn",
-      "EDA",
+      "Exploratory Data Analysis (EDA)",
       "Data Analysis",
       "Data Cleaning",
       "Data Visualization",
@@ -225,13 +254,18 @@
     "description": "An end-to-end Exploratory Data Analysis (EDA) project on Indian iPhone e-commerce data using Python, Pandas, Matplotlib, and Seaborn to uncover product demand, pricing patterns, platform behavior, geographic trends, and purchasing patterns.",
     "problem": "E-commerce product data contains multiple dimensions such as model, storage, color, platform, location, date, and price, making it difficult to identify meaningful demand patterns.",
     "solution": "Built a comprehensive EDA pipeline that cleans and transforms raw iPhone e-commerce data into structured product, geographic, platform, and temporal features.",
+    "categories": [
+      "Data Analytics",
+      "EDA",
+      "E-Commerce Analytics"
+    ],
     "technologies": [
       "Python",
       "Pandas",
       "NumPy",
       "Matplotlib",
       "Seaborn",
-      "EDA",
+      "Exploratory Data Analysis (EDA)",
       "Data Analysis",
       "Feature Engineering",
       "Pricing Analysis",

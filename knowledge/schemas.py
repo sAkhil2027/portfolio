@@ -40,6 +40,7 @@ class Project(BaseModel):
     description: str
     problem: Optional[str] = None
     solution: Optional[str] = None
+    categories: List[str] = Field(default_factory=list)
     technologies: List[str] = Field(default_factory=list)
     features: List[str] = Field(default_factory=list)
     role: Optional[str] = None
@@ -158,6 +159,7 @@ class DocumentMetadata(BaseModel):
     source: str
     doc_id: Optional[str] = None
     category: Optional[str] = None
+    categories: List[str] = Field(default_factory=list)
     title: Optional[str] = None
     technologies: List[str] = Field(default_factory=list)
     github: Optional[str] = None

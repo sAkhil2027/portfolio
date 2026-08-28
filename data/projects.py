@@ -22,6 +22,7 @@ PROJECTS = [
         "my_contribution": "Architected the end-to-end ML pipeline, engineered 45+ domain features in Pandas/SQL, and integrated SHAP model interpretability.",
         "challenges": ["Handling class imbalance (9:1 non-churn ratio)", "Optimizing inference latency under 25ms for 500k daily predictions."],
         "category": "Machine Learning",
+        "categories": ["Machine Learning", "Backend", "Predictive Analytics"],
         "featured": True,
         "image": "project-cloud-analytics.png",
         "technologies": ["Python", "Scikit-Learn", "XGBoost", "Pandas", "FastAPI", "Streamlit"],
@@ -82,6 +83,7 @@ PROJECTS = [
         "my_contribution": "Built transcript ingestion, local SentenceTransformer 384D embedding generation, cosine similarity retrieval engine, FastAPI backend, and FastMCP agent tool integration.",
         "challenges": ["Handling unsegmented multilingual transcripts", "Optimizing chunking parameters (800 char chunk / 150 char overlap) for semantic coherence."],
         "category": "Generative AI",
+        "categories": ["Generative AI", "RAG", "NLP", "Backend", "AI Agent"],
         "featured": True,
         "image": "project-yt-helper.png",
         "technologies": [
@@ -151,6 +153,7 @@ PROJECTS = [
         "my_contribution": "Built the complete ML workflow including data preprocessing, feature engineering, EDA, categorical transformation, Scikit-learn pipeline construction, Random Forest training, model evaluation, and model serialization.",
         "challenges": ["Handling inconsistent laptop specification formats such as RAM, weight, CPU, GPU, storage, and screen resolution."],
         "category": "Machine Learning",
+        "categories": ["Machine Learning", "Predictive Analytics", "Data Preprocessing"],
         "featured": False,
         "image": "project-laptop-price.png",
         "technologies": [
@@ -220,6 +223,7 @@ PROJECTS = [
         "my_contribution": "Built the RAG pipeline, PDF ingestion and chunking workflow, HuggingFace embedding generation, FAISS retrieval, LangGraph agent workflow, tool integrations, SQLite conversation checkpointing, and Streamlit chat interface.",
         "challenges": ["Designing a stateful workflow combining document retrieval with external tools", "Maintaining conversation history across multiple chat threads in real time."],
         "category": "Generative AI",
+        "categories": ["Generative AI", "RAG", "NLP", "Full Stack", "AI Agent"],
         "featured": False,
         "image": "project-multi-utility-rag.png",
         "technologies": [
@@ -287,6 +291,7 @@ PROJECTS = [
         "my_contribution": "Performed the complete data analysis workflow including dataset inspection, data cleaning, missing-value handling, data type conversion, descriptive statistics, Pandas aggregations, and business-oriented visualizations.",
         "challenges": ["Cleaning an initially inconsistent sales dataset while identifying the most meaningful dimensions for analysis."],
         "category": "Data Analysis",
+        "categories": ["Data Analytics", "EDA", "Business Intelligence"],
         "featured": False,
         "image": "project-diwali-sales.png",
         "technologies": [
@@ -355,6 +360,7 @@ PROJECTS = [
         "my_contribution": "Performed data cleaning, date feature engineering, product attribute extraction, platform comparison, geographic analysis, seasonality analysis, and pricing analysis.",
         "challenges": ["Handling inconsistent product names while extracting model, generation, storage, and color attributes."],
         "category": "Data Analysis",
+        "categories": ["Data Analytics", "EDA", "E-Commerce Analytics"],
         "featured": False,
         "image": "project-iphone-analysis.png",
         "technologies": [

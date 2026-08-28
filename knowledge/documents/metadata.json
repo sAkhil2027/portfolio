@@ -3,6 +3,7 @@
     "source": "resume_master",
     "doc_id": "resume-master",
     "category": "Master Curriculum Vitae",
+    "categories": ["Resume", "Curriculum Vitae", "Master Profile"],
     "title": "Akhil Vikram Singh - Master Composite Resume",
     "technologies": [
       "Python", "PyTorch", "Scikit-Learn", "FastAPI", "RAG", "LangChain",
@@ -13,6 +14,7 @@
     "source": "resume_variant",
     "doc_id": "resume-ai-ml-engineer",
     "category": "AI/ML & RAG Targeted Resume",
+    "categories": ["Generative AI", "RAG", "AI/ML Engineer"],
     "title": "Akhil Vikram Singh - AI/ML Engineer Resume",
     "technologies": [
       "Python", "PyTorch", "RAG", "LangChain", "LangGraph", "FastMCP",
@@ -23,6 +25,7 @@
     "source": "resume_variant",
     "doc_id": "resume-data-scientist",
     "category": "Data Science Targeted Resume",
+    "categories": ["Data Science", "Machine Learning", "Predictive Analytics"],
     "title": "Akhil Vikram Singh - Data Scientist Resume",
     "technologies": [
       "Python", "Scikit-Learn", "XGBoost", "Random Forest", "Pandas",
@@ -33,6 +36,7 @@
     "source": "resume_variant",
     "doc_id": "resume-data-analyst",
     "category": "Data Analytics Targeted Resume",
+    "categories": ["Data Analytics", "Business Intelligence", "SQL Data Warehousing"],
     "title": "Akhil Vikram Singh - Data Analyst Resume",
     "technologies": [
       "SQL", "PostgreSQL", "Power BI", "Tableau", "Python", "Pandas",
@@ -43,6 +47,7 @@
     "source": "linkedin_about",
     "doc_id": "linkedin-about",
     "category": "Social Profile Summary",
+    "categories": ["LinkedIn", "Personal Bio", "Executive Summary"],
     "title": "Akhil Vikram Singh - LinkedIn About & Summary",
     "technologies": [
       "Generative AI", "RAG", "Machine Learning", "Data Analysis", "FastMCP", "Power BI"
@@ -52,6 +57,7 @@
     "source": "linkedin_experience",
     "doc_id": "linkedin-experience",
     "category": "Social Profile Work History",
+    "categories": ["LinkedIn", "Work History", "Hackathons"],
     "title": "Akhil Vikram Singh - LinkedIn Work & Hackathon Experience",
     "technologies": [
       "Python", "FastAPI", "RAG", "LangChain", "ChromaDB", "Llama 3.3 70B",
@@ -62,6 +68,7 @@
     "source": "linkedin_education",
     "doc_id": "linkedin-education",
     "category": "Social Profile Academic Degree",
+    "categories": ["LinkedIn", "Education", "Academic Degree"],
     "title": "Akhil Vikram Singh - LinkedIn Education (IIIT Bhagalpur)",
     "technologies": [
       "Machine Learning", "Data Mining", "Natural Language Processing", "Linear Algebra", "Python", "SQL"
@@ -71,6 +78,7 @@
     "source": "linkedin_skills",
     "doc_id": "linkedin-skills",
     "category": "Social Profile Endorsements",
+    "categories": ["LinkedIn", "Technical Competencies", "Endorsements"],
     "title": "Akhil Vikram Singh - LinkedIn Skills & Endorsements",
     "technologies": [
       "Python", "C++", "SQL", "PyTorch", "Scikit-Learn", "RAG", "LangChain",
@@ -81,6 +89,7 @@
     "source": "linkedin_achievements",
     "doc_id": "linkedin-achievements",
     "category": "Social Profile Accomplishments",
+    "categories": ["LinkedIn", "Certifications", "Awards"],
     "title": "Akhil Vikram Singh - LinkedIn Accomplishments & Certifications",
     "technologies": [
       "ServiceNow", "AWS Machine Learning", "Prompt Engineering", "Python", "SQL", "XGBoost"
@@ -90,6 +99,7 @@
     "source": "experience",
     "doc_id": "experience-overview",
     "category": "Hackathons & Professional Roles",
+    "categories": ["Work History", "Hackathons", "Engineering Roles"],
     "title": "Akhil Vikram Singh - Work & Hackathon Experience",
     "technologies": [
       "Python", "FastAPI", "RAG", "LangChain", "ChromaDB", "Llama 3.3 70B",
@@ -100,6 +110,7 @@
     "source": "skills",
     "doc_id": "skills-matrix",
     "category": "Technical Competencies",
+    "categories": ["Technical Competencies", "Skills Matrix"],
     "title": "Akhil Vikram Singh - Technical Skills Matrix",
     "technologies": [
       "Python", "C++", "SQL", "PyTorch", "Scikit-Learn", "RAG", "LangChain",
@@ -110,6 +121,7 @@
     "source": "education",
     "doc_id": "education-iiit-bhagalpur",
     "category": "Academic Degree",
+    "categories": ["Education", "Academic Degree"],
     "title": "B.Tech in Mechatronics & Automation - IIIT Bhagalpur",
     "technologies": [
       "Machine Learning", "Data Mining", "Natural Language Processing", "Linear Algebra",
@@ -120,6 +132,7 @@
     "source": "project",
     "doc_id": "customer-churn-prediction-ml",
     "category": "Machine Learning",
+    "categories": ["Machine Learning", "Backend", "Predictive Analytics"],
     "title": "Customer Churn Prediction & Lifetime Value ML Engine",
     "technologies": ["Python", "Scikit-Learn", "XGBoost", "Pandas", "FastAPI", "Streamlit"],
     "github": "https://github.com/akhil-data/customer-churn-ml",
@@ -129,6 +142,7 @@
     "source": "project",
     "doc_id": "youtube-ai-rag-chatbot",
     "category": "Generative AI",
+    "categories": ["Generative AI", "RAG", "NLP", "Backend", "AI Agent"],
     "title": "YT Helper — YouTube AI RAG Chatbot & API",
     "technologies": [
       "Python", "FastAPI", "RAG", "LLMs", "Llama 3.3 70B", "Groq",
@@ -140,6 +154,7 @@
     "source": "project",
     "doc_id": "laptop-price-prediction",
     "category": "Machine Learning",
+    "categories": ["Machine Learning", "Predictive Analytics", "Data Preprocessing"],
     "title": "Laptop Price Prediction — Machine Learning",
     "technologies": [
       "Python", "Pandas", "NumPy", "Scikit-learn", "Machine Learning",
@@ -151,6 +166,7 @@
     "source": "project",
     "doc_id": "multi-utility-rag-chatbot",
     "category": "Generative AI",
+    "categories": ["Generative AI", "RAG", "NLP", "Full Stack", "AI Agent"],
     "title": "Multi Utility RAG Chatbot — LangGraph & FAISS",
     "technologies": [
       "Python", "Streamlit", "LangGraph", "LangChain", "RAG", "LLMs",
@@ -162,6 +178,7 @@
     "source": "project",
     "doc_id": "diwali-sales-analysis",
     "category": "Data Analysis",
+    "categories": ["Data Analytics", "EDA", "Business Intelligence"],
     "title": "Diwali Sales Analysis — EDA & Business Insights",
     "technologies": [
       "Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "EDA",
@@ -173,6 +190,7 @@
     "source": "project",
     "doc_id": "iphone-ecommerce-sales-analysis",
     "category": "Data Analysis",
+    "categories": ["Data Analytics", "EDA", "E-Commerce Analytics"],
     "title": "iPhone E-Commerce Sales Analysis — EDA & Business Insights",
     "technologies": [
       "Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "EDA",
