@@ -10,12 +10,12 @@
     "technologies": [
       "Python",
       "FastAPI",
-      "RAG",
+      "Retrieval-Augmented Generation (RAG)",
       "LangChain",
       "ChromaDB",
       "Llama 3.3 70B",
       "Groq",
-      "MCP",
+      "Model Context Protocol (MCP)",
       "Docker"
     ],
     "achievements": [
@@ -66,7 +66,7 @@
       "XGBoost",
       "FastAPI",
       "Plotly",
-      "Git"
+      "Git & GitHub"
     ],
     "achievements": [
       "Awarded 1st place among 120+ participant teams for innovative automated ML & time-series forecasting pipeline.",
@@ -88,7 +88,7 @@
       "PyTorch",
       "YOLOv8",
       "Scikit-Learn",
-      "SHAP",
+      "SHAP Explainability",
       "OpenCV",
       "Pandas",
       "Matplotlib"
