@@ -1,0 +1,30 @@
+[
+  {
+    "query": "Which projects use FastAPI?",
+    "expected_docs": ["json_projects_0", "youtube-ai-rag-chatbot"]
+  },
+  {
+    "query": "Tell me about Akhil's RAG chatbot project.",
+    "expected_docs": ["youtube-ai-rag-chatbot"]
+  },
+  {
+    "query": "What technologies does Akhil know?",
+    "expected_docs": ["json_skills_0", "json_skills_1", "json_profile"]
+  },
+  {
+    "query": "Where did Akhil work or participate in hackathons?",
+    "expected_docs": ["json_experience_0", "json_experience_1", "json_achievements_0"]
+  },
+  {
+    "query": "What is Akhil's educational background?",
+    "expected_docs": ["json_education_0", "education-iiit-bhagalpur"]
+  },
+  {
+    "query": "Which project uses Qdrant?",
+    "expected_docs": ["youtube-ai-rag-chatbot"]
+  },
+  {
+    "query": "Quantum astrophysics and astronomy research",
+    "expected_docs": []
+  }
+]
