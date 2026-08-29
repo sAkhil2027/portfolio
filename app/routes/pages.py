@@ -2,6 +2,7 @@
 Page routes APIRouter for Akhil's FastAPI Portfolio application.
 """
 
+from typing import Optional, List, Dict, Any
 from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
@@ -201,4 +202,85 @@ async def contact_submit(payload: ContactPayload, background_tasks: BackgroundTa
     return JSONResponse(content={
         "success": True,
         "message": f"Thank you, {payload.name}! Your message has been sent directly to my inbox. I will get back to you shortly."
+    })
+
+
+class RAGSearchPayload(BaseModel):
+    query: str
+    top_k: Optional[int] = 5
+    mode: Optional[str] = "hybrid"
+    source_type: Optional[str] = None
+    category: Optional[str] = None
+    rerank: Optional[bool] = True
+
+
+@pages_bp.post("/api/rag/search")
+async def rag_search_api(request: Request, payload: RAGSearchPayload):
+    """
+    Sub-30ms RAG Search REST API endpoint.
+    Queries the pre-loaded RAG pipeline attached to app.state.rag_pipeline.
+    """
+    pipeline = getattr(request.app.state, "rag_pipeline", None)
+    if not pipeline:
+        return JSONResponse(status_code=503, content={
+            "success": False,
+            "message": "RAG Search Pipeline is initializing. Please try again shortly."
+        })
+
+    metadata_filter = {}
+    if payload.source_type:
+        metadata_filter["source_type"] = payload.source_type
+    if payload.category:
+        metadata_filter["category"] = payload.category
+
+    results = pipeline.query(
+        query_text=payload.query,
+        mode=payload.mode or "hybrid",
+        top_k=payload.top_k or 5,
+        rerank=payload.rerank if payload.rerank is not None else True,
+        metadata_filter=metadata_filter if metadata_filter else None
+    )
+
+    matches = []
+    for res in results:
+        chunk = res.chunk
+        matches.append({
+            "chunk_id": chunk.id,
+            "score": round(float(res.score), 4),
+            "retrieval_method": res.retrieval_method,
+            "text": chunk.text,
+            "source": chunk.source,
+            "source_type": chunk.source_type,
+            "category": chunk.category,
+            "section": chunk.section,
+            "technologies": chunk.technologies,
+            "metadata": chunk.metadata
+        })
+
+    return JSONResponse(content={
+        "success": True,
+        "query": payload.query,
+        "count": len(matches),
+        "matches": matches
+    })
+
+
+@pages_bp.get("/health")
+async def health_check_api(request: Request):
+    """
+    Production Health Check Endpoint.
+    Returns status of FastAPI application, Qdrant vector database, embedding model, and indexed chunks.
+    """
+    pipeline = getattr(request.app.state, "rag_pipeline", None)
+    is_ready = pipeline is not None
+    chunks_count = len(pipeline.chunks) if pipeline else 0
+    qdrant_status = "connected" if (pipeline and hasattr(pipeline.vector_retriever, "_is_qdrant_available") and pipeline.vector_retriever._is_qdrant_available) else "in_memory_fallback"
+    model_name = os.environ.get("EMBEDDING_MODEL", "all-MiniLM-L6-v2")
+
+    return JSONResponse(content={
+        "status": "healthy" if is_ready else "initializing",
+        "qdrant": qdrant_status,
+        "collection": "portfolio_knowledge",
+        "embedding_model": model_name,
+        "pre_loaded_chunks": chunks_count
     })
