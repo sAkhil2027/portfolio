@@ -23,10 +23,16 @@ class TextEmbedder:
     def _init_model(self):
         if self._initialized:
             return
+        if os.environ.get("USE_LIGHTWEIGHT_EMBEDDINGS") == "1" or os.environ.get("FAST_EVAL_MODE") == "1":
+            self._st_model = None
+            self._initialized = True
+            return
+
         try:
             from sentence_transformers import SentenceTransformer
             self._st_model = SentenceTransformer(self.model_name)
-        except ImportError:
+        except (ImportError, Exception) as e:
+            print(f"[TextEmbedder] Note: SentenceTransformer model loading bypassed ({e}). Using lightweight fallback vectorizer.")
             self._st_model = None
         self._initialized = True
 
