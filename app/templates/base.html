@@ -120,6 +120,67 @@
     </div>
   </footer>
 
+  <!-- Floating AI Chatbot Widget -->
+  <button class="chat-widget-toggle" id="chat-widget-toggle" aria-label="Open AI Assistant Chat">
+    <i class="fa-solid fa-wand-magic-sparkles"></i>
+    <span class="chat-badge-pulse"></span>
+  </button>
+
+  <!-- Glassmorphism Chatbot Modal -->
+  <div class="chat-modal" id="chat-modal" role="dialog" aria-label="Akhil AI Assistant">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-header-avatar">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="chat-header-text">
+          <h3>Akhil AI Assistant</h3>
+          <span class="chat-header-status">Online • RAG Powered</span>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button class="chat-header-btn" id="chat-clear-btn" aria-label="Clear Chat History" title="Clear Chat History">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+        <button class="chat-header-btn chat-close-btn" id="chat-close-btn" aria-label="Close Chat" title="Close Chat">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Starter Prompts -->
+    <div class="chat-quick-prompts">
+      <button type="button" class="chat-quick-prompt" data-prompt="Tell me about Akhil's RAG project">⚡ RAG Project</button>
+      <button type="button" class="chat-quick-prompt" data-prompt="What are Akhil's top machine learning skills?">🛠 Top Skills</button>
+      <button type="button" class="chat-quick-prompt" data-prompt="What experience does Akhil have in Data Science?">💼 Experience</button>
+    </div>
+
+    <!-- Messages Container -->
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-msg chat-msg-bot">
+        <div class="chat-avatar bot-avatar">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="chat-bubble chat-bubble-bot">
+          <div class="chat-text-content">
+            👋 Hi there! I'm <strong>Akhil's AI Portfolio Assistant</strong>. Ask me anything about Akhil's machine learning projects, skills, tech stack, or experience!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Input Form -->
+    <form class="chat-input-form" id="chat-input-form">
+      <input type="text" id="chat-user-input" placeholder="Ask about Akhil's projects or skills..." autocomplete="off" maxlength="500" required>
+      <button type="submit" class="chat-send-btn" id="chat-send-btn" aria-label="Send message">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+
+  <!-- Chatbot Client JavaScript -->
+  <script src="{{ url_for('static', path='js/chat.js') }}"></script>
+
   <!-- App JavaScript for Mobile Menu, Smooth Scroll & Form Interactivity -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
