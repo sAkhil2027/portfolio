@@ -17,8 +17,9 @@ class QdrantRetriever:
     Production Qdrant Vector Search Engine with Dense + Sparse BM25 multi-vector indexing.
     """
 
-    def __init__(self, collection_name: str = "portfolio_knowledge", embedder: TextEmbedder = None, location: Optional[str] = None):
-        self.collection_name = collection_name
+    def __init__(self, collection_name: Optional[str] = None, embedder: TextEmbedder = None, location: Optional[str] = None):
+        env_col = os.environ.get("QDRANT_COLLECTION", "portfolio_knowledge").strip()
+        self.collection_name = collection_name or (env_col if env_col else "portfolio_knowledge")
         self.embedder = embedder or TextEmbedder()
         self.sparse_encoder = BM25SparseEncoder()
         self.chunks: List[DocumentChunk] = []
@@ -26,6 +27,7 @@ class QdrantRetriever:
         env_url = os.environ.get("QDRANT_URL", "").strip()
         env_key = os.environ.get("QDRANT_API_KEY", "").strip()
 
+        self.environment = os.environ.get("ENVIRONMENT", "development").lower()
         self.location = location or (env_url if env_url else ":memory:")
         self.api_key = env_key or None
 
@@ -42,6 +44,7 @@ class QdrantRetriever:
 
             if self.location.startswith(("http://", "https://")):
                 self._qdrant_client = QdrantClient(url=self.location, api_key=self.api_key)
+                self._qdrant_client.get_collections()
             elif self.location == ":memory:":
                 self._qdrant_client = QdrantClient(location=":memory:")
             else:
@@ -50,9 +53,14 @@ class QdrantRetriever:
             self._models = models
             self._is_qdrant_available = True
         except (ImportError, Exception) as e:
-            print(f"[QdrantRetriever] Note: qdrant-client not loaded ({e}). Using native VectorRetriever fallback.")
-            self._is_qdrant_available = False
-            self._fallback_retriever = VectorRetriever(embedder=self.embedder)
+            if self.environment == "production":
+                print(f"[QdrantRetriever] CRITICAL PRODUCTION ERROR: Qdrant Cloud connection failed: {e}. Fallbacks are DISABLED in production mode.")
+                self._is_qdrant_available = False
+                self._fallback_retriever = None
+            else:
+                print(f"[QdrantRetriever] Note: qdrant-client not loaded ({e}). Using native VectorRetriever fallback.")
+                self._is_qdrant_available = False
+                self._fallback_retriever = VectorRetriever(embedder=self.embedder)
 
     def _ensure_collection(self, vector_size: int = 384):
         if not self._is_qdrant_available:
@@ -173,8 +181,12 @@ class QdrantRetriever:
         Searches Qdrant with optional payload metadata filtering and min_score thresholding.
         """
         if not self._is_qdrant_available:
-            results = self._fallback_retriever.search(query, top_k=top_k, metadata_filter=metadata_filter)
-            return [r for r in results if r.score >= min_score]
+            if self.environment == "production":
+                raise RuntimeError("Production Failure: Qdrant Cloud cluster is disconnected or unavailable.")
+            if self._fallback_retriever is not None:
+                results = self._fallback_retriever.search(query, top_k=top_k, metadata_filter=metadata_filter)
+                return [r for r in results if r.score >= min_score]
+            return []
 
         q_dense = self.embedder.embed_text(query)
         s_indices, s_values = self.sparse_encoder.encode_text(query)
