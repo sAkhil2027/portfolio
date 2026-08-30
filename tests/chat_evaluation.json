@@ -1,0 +1,41 @@
+[
+  {
+    "category": "Projects",
+    "query": "Tell me about Akhil's RAG project.",
+    "expected_type": "answer",
+    "expected_topics": ["RAG", "Qdrant", "FastAPI", "Pipeline"]
+  },
+  {
+    "category": "Technologies",
+    "query": "Which projects use FastAPI?",
+    "expected_type": "answer",
+    "expected_topics": ["FastAPI", "Portfolio", "RAG"]
+  },
+  {
+    "category": "Experience",
+    "query": "Tell me about Akhil's work experience.",
+    "expected_type": "answer",
+    "expected_topics": ["Data Science", "Intern", "Experience"]
+  },
+  {
+    "category": "Skills",
+    "query": "What ML technologies does Akhil know?",
+    "expected_type": "answer",
+    "expected_topics": ["Machine Learning", "Python", "PyTorch", "NLP", "Scikit-Learn"]
+  },
+  {
+    "category": "Follow-up",
+    "turns": [
+      {"role": "user", "content": "Tell me about Akhil's RAG project."},
+      {"role": "user", "content": "What technologies did it use?"}
+    ],
+    "expected_type": "rewritten_query",
+    "expected_keywords": ["RAG", "technologies"]
+  },
+  {
+    "category": "Unknown",
+    "query": "What was Akhil's role at Google?",
+    "expected_type": "refusal",
+    "expected_refusal_phrase": "couldn't find information"
+  }
+]
