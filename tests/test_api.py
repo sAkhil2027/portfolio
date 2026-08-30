@@ -3,12 +3,10 @@ FastAPI RAG Search REST API Endpoint Integration Tests.
 """
 
 import os
-import unittest
-from fastapi.testclient import TestClient
-
-# Set fast eval mode for unit testing
 os.environ["FAST_EVAL_MODE"] = "1"
 
+import unittest
+from fastapi.testclient import TestClient
 from app import create_app
 
 
