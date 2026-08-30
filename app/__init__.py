@@ -11,6 +11,7 @@ from contextlib import asynccontextmanager
 import os
 
 from app.routes.pages import pages_bp, TEMPLATES_DIR, STATIC_DIR
+from app.routes.chat import chat_bp
 from data import get_profile
 from rag.pipeline import RAGPipeline
 
@@ -59,6 +60,7 @@ def create_app() -> FastAPI:
 
     # Include routes APIRouter
     app.include_router(pages_bp)
+    app.include_router(chat_bp)
 
     # Custom 404 Exception Handler
     @app.exception_handler(StarletteHTTPException)
