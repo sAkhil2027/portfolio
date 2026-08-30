@@ -76,12 +76,14 @@ class RAGPipeline:
         Queries the indexed RAG pipeline with optional metadata filtering and score thresholding.
         mode: 'bm25', 'vector', or 'hybrid'
         """
+        fetch_k = top_k * 3 if rerank else top_k
+
         if mode == "bm25":
-            results = self.bm25_retriever.search(query_text, top_k=top_k, metadata_filter=metadata_filter)
+            results = self.bm25_retriever.search(query_text, top_k=fetch_k, metadata_filter=metadata_filter)
         elif mode == "vector":
-            results = self.vector_retriever.search(query_text, top_k=top_k, metadata_filter=metadata_filter)
+            results = self.vector_retriever.search(query_text, top_k=fetch_k, metadata_filter=metadata_filter)
         else:
-            results = self.hybrid_retriever.search(query_text, top_k=top_k, metadata_filter=metadata_filter)
+            results = self.hybrid_retriever.search(query_text, top_k=fetch_k, metadata_filter=metadata_filter)
 
         if min_score > 0.0:
             results = [r for r in results if r.score >= min_score]
@@ -89,7 +91,7 @@ class RAGPipeline:
         if rerank:
             results = self.reranker.rerank(query_text, results, top_k=top_k)
 
-        return results
+        return results[:top_k]
 
     def save_indices(self, bm25_path: str, vector_path: str):
         """
