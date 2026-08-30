@@ -233,13 +233,19 @@ async def rag_search_api(request: Request, payload: RAGSearchPayload):
     if payload.category:
         metadata_filter["category"] = payload.category
 
-    results = pipeline.query(
-        query_text=payload.query,
-        mode=payload.mode or "hybrid",
-        top_k=payload.top_k or 5,
-        rerank=payload.rerank if payload.rerank is not None else True,
-        metadata_filter=metadata_filter if metadata_filter else None
-    )
+    try:
+        results = pipeline.query(
+            query_text=payload.query,
+            mode=payload.mode or "hybrid",
+            top_k=payload.top_k or 5,
+            rerank=payload.rerank if payload.rerank is not None else True,
+            metadata_filter=metadata_filter if metadata_filter else None
+        )
+    except RuntimeError as err:
+        return JSONResponse(status_code=503, content={
+            "success": False,
+            "message": "Vector Search Database is currently unavailable. Please try again shortly."
+        })
 
     matches = []
     for res in results:
@@ -271,14 +277,20 @@ async def health_check_api(request: Request):
     Production Health Check Endpoint.
     Returns status of FastAPI application, Qdrant vector database, embedding model, and indexed chunks.
     """
+    environment = os.environ.get("ENVIRONMENT", "development").lower()
     pipeline = getattr(request.app.state, "rag_pipeline", None)
     is_ready = pipeline is not None
     chunks_count = len(pipeline.chunks) if pipeline else 0
-    qdrant_status = "connected" if (pipeline and hasattr(pipeline.vector_retriever, "_is_qdrant_available") and pipeline.vector_retriever._is_qdrant_available) else "in_memory_fallback"
+    qdrant_connected = (pipeline and hasattr(pipeline.vector_retriever, "_is_qdrant_available") and pipeline.vector_retriever._is_qdrant_available)
+    qdrant_status = "connected" if qdrant_connected else ("disconnected" if environment == "production" else "in_memory_fallback")
     model_name = os.environ.get("EMBEDDING_MODEL", "all-MiniLM-L6-v2")
 
-    return JSONResponse(content={
-        "status": "healthy" if is_ready else "initializing",
+    is_healthy = is_ready and (qdrant_connected or environment != "production")
+    status_code = 200 if is_healthy else 503
+
+    return JSONResponse(status_code=status_code, content={
+        "status": "healthy" if is_healthy else "unhealthy",
+        "environment": environment,
         "qdrant": qdrant_status,
         "collection": "portfolio_knowledge",
         "embedding_model": model_name,
