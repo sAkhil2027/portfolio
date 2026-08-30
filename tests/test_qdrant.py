@@ -2,7 +2,11 @@
 Unit tests for QdrantVectorRetriever.
 """
 
+import os
 import unittest
+
+os.environ["FAST_EVAL_MODE"] = "1"
+
 from rag.models.document import DocumentChunk
 from rag.retrieval.qdrant import QdrantRetriever
 
