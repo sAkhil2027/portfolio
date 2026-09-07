@@ -10,9 +10,9 @@ EDUCATION = [
         "start_date": "2023",
         "end_date": "2027",
         "period": "2023 - 2027",
-        "grade": "7.68/10 CGPA",
         "description": "Specialized in Machine Learning, Statistical Data Mining, Natural Language Processing, Linear Algebra, and AI software engineering at IIIT Bhagalpur.",
         "highlights": [
+            "I have grade: 7.68/10 CGPA",
             "Specialized in Machine Learning, Statistical Data Mining, Natural Language Processing, and Linear Algebra.",
             "Selected by IIIT Bhagalpur twice to represent the college and submit solutions for the Smart India Hackathon (SIH), a national-level hackathon, in both 2025 and 2026.",
             "Participated in an intra-college hackathon with 500+ participants and secured a Top 10 position.",

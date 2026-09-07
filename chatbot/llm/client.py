@@ -1,6 +1,6 @@
 """
 LLM Client module.
-Handles text generation and token streaming via Free Groq Cloud (Llama 3.1/3.3), Google Gemini, OpenAI, or local offline fallback synthesizer.
+Handles text generation and token streaming via Free Groq Cloud, Google Gemini, OpenAI, or local offline fallback synthesizer.
 """
 
 import os
@@ -10,11 +10,17 @@ import urllib.request
 import urllib.error
 from typing import AsyncGenerator, Optional
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 
 class LLMClient:
     """
     LLM Client providing async streaming text generation.
-    Supports 100% Free Groq Cloud (Llama 3.1), Google Gemini, OpenAI, and offline fallback.
+    Supports 100% Free Groq Cloud, Google Gemini, OpenAI, and offline fallback.
     """
 
     def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None):
@@ -27,19 +33,19 @@ class LLMClient:
         if model:
             self.model = model
         elif self.groq_api_key:
-            self.model = os.environ.get("LLM_MODEL", "llama-3.1-8b-instant")
+            self.model = os.environ.get("LLM_MODEL", "qwen/qwen3.8-27b")
         elif self.gemini_api_key:
             self.model = os.environ.get("LLM_MODEL", "gemini-1.5-flash")
         elif self.openai_api_key:
             self.model = os.environ.get("LLM_MODEL", "gpt-4o-mini")
         else:
-            self.model = os.environ.get("LLM_MODEL", "llama-3.1-8b-instant")
+            self.model = os.environ.get("LLM_MODEL", "qwen/qwen3.8-27b")
 
     async def generate_stream(self, prompt: str, context: str) -> AsyncGenerator[str, None]:
         """
         Yields token strings asynchronously as they are generated from Groq, Gemini, OpenAI, or offline fallback.
         """
-        # 1. Try Free Groq Cloud (Llama 3.1 / 3.3)
+        # 1. Try Free Groq Cloud
         if self.groq_api_key or (self.api_key and "gsk_" in str(self.api_key)):
             try:
                 groq_key = self.groq_api_key or self.api_key
@@ -77,10 +83,11 @@ class LLMClient:
         headers = {
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             "Accept": "text/event-stream"
         }
         payload = {
-            "model": self.model if "llama" in self.model else "llama-3.1-8b-instant",
+            "model": self.model,
             "messages": [
                 {"role": "user", "content": prompt}
             ],
