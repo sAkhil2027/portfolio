@@ -29,8 +29,8 @@ PROJECTS = [
         "tags": ["Python", "Scikit-Learn", "XGBoost", "Pandas", "FastAPI", "Streamlit"],
         "demo": "https://churn-ml-demo.akhil.dev",
         "demo_url": "https://churn-ml-demo.akhil.dev",
-        "github": "https://github.com/akhil-data/customer-churn-ml",
-        "repo_url": "https://github.com/akhil-data/customer-churn-ml",
+        "github": "https://github.com/sAkhil2027?tab=repositories",
+        "repo_url": "https://github.com/sAkhil2027/Customer-Churn-Prediction-Lifetime-Value-ML-Engine.git",
         "results": [
             "94.2% AUC-ROC Score",
             "25M+ Records Analyzed",
@@ -85,7 +85,7 @@ PROJECTS = [
         "category": "Generative AI",
         "categories": ["Generative AI", "RAG", "NLP", "Backend", "AI Agent"],
         "featured": True,
-        "image": "project-yt-helper.png",
+        "image": "project-cloud-analytics.png",
         "technologies": [
             "Python", "FastAPI", "RAG", "LLMs", "Llama 3.3 70B", "Groq",
             "ChromaDB", "SentenceTransformers", "Embeddings", "Semantic Search", "MCP", "FastMCP"
@@ -96,8 +96,8 @@ PROJECTS = [
         ],
         "demo": "",
         "demo_url": "",
-        "github": "https://github.com/sAkhil2027/yt_video-rag-chatbot",
-        "repo_url": "https://github.com/sAkhil2027/yt_video-rag-chatbot",
+        "github": "https://github.com/sAkhil2027?tab=repositories",
+        "repo_url": "https://github.com/sAkhil2027/yt_rag.git",
         "results": [
             "384D Embedding Dimensions",
             "Top 7 Context Chunks",
@@ -155,7 +155,7 @@ PROJECTS = [
         "category": "Machine Learning",
         "categories": ["Machine Learning", "Predictive Analytics", "Data Preprocessing"],
         "featured": False,
-        "image": "project-laptop-price.png",
+        "image": "project-cloud-analytics.png",
         "technologies": [
             "Python", "Pandas", "NumPy", "Scikit-learn", "Machine Learning",
             "Random Forest", "Regression", "Feature Engineering", "EDA", "Data Preprocessing"
@@ -166,7 +166,7 @@ PROJECTS = [
         ],
         "demo": "",
         "demo_url": "",
-        "github": "https://github.com/sAkhil2027/Laptop-Price-Prediction",
+        "github": "https://github.com/sAkhil2027?tab=repositories",
         "repo_url": "https://github.com/sAkhil2027/Laptop-Price-Prediction",
         "results": [
             "100 Random Forest Estimators",
@@ -225,7 +225,7 @@ PROJECTS = [
         "category": "Generative AI",
         "categories": ["Generative AI", "RAG", "NLP", "Full Stack", "AI Agent"],
         "featured": False,
-        "image": "project-multi-utility-rag.png",
+        "image": "project-cloud-analytics.png",
         "technologies": [
             "Python", "Streamlit", "LangGraph", "LangChain", "RAG", "LLMs",
             "OpenRouter", "GPT-4o-mini", "FAISS", "HuggingFace", "Embeddings", "SQLite"
@@ -236,7 +236,7 @@ PROJECTS = [
         ],
         "demo": "",
         "demo_url": "",
-        "github": "https://github.com/sAkhil2027/panscience-Multi-Utility-RAG-Chatbot-",
+        "github": "https://github.com/sAkhil2027?tab=repositories",
         "repo_url": "https://github.com/sAkhil2027/panscience-Multi-Utility-RAG-Chatbot-",
         "results": [
             "1000 / 200 Chunk / Overlap",
@@ -293,7 +293,7 @@ PROJECTS = [
         "category": "Data Analysis",
         "categories": ["Data Analytics", "EDA", "Business Intelligence"],
         "featured": False,
-        "image": "project-diwali-sales.png",
+        "image": "project-cloud-analytics.png",
         "technologies": [
             "Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "EDA",
             "Data Analysis", "Data Cleaning", "Data Visualization", "Business Analytics"
@@ -304,7 +304,7 @@ PROJECTS = [
         ],
         "demo": "",
         "demo_url": "",
-        "github": "https://github.com/sAkhil2027/diwali-sale-anaysis",
+        "github": "https://github.com/sAkhil2027?tab=repositories",
         "repo_url": "https://github.com/sAkhil2027/diwali-sale-anaysis",
         "results": [
             "11.2K+ Initial Records",
@@ -362,7 +362,7 @@ PROJECTS = [
         "category": "Data Analysis",
         "categories": ["Data Analytics", "EDA", "E-Commerce Analytics"],
         "featured": False,
-        "image": "project-iphone-analysis.png",
+        "image": "project-cloud-analytics.png",
         "technologies": [
             "Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "EDA",
             "Data Analysis", "Feature Engineering", "Pricing Analysis", "E-Commerce Analytics"
