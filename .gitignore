@@ -10,3 +10,21 @@ ENV/
 .DS_Store
 .env
 *.env
+# Secrets & environment files
+.env
+.env.*
+*.env
+*.local
+*.secret
+*.pem
+*.key
+*.crt
+# Logs and temporary files
+*.log
+*.sqlite
+*.db
+# Qdrant / vector store data (if stored locally)
+knowledge/*.pkl
+knowledge/*.json
+# Scratch / generated files you don't want in repo
+scratch/
