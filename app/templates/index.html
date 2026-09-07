@@ -25,10 +25,12 @@
           <i class="fa-solid fa-rocket"></i> Explore Work
         </a>
         <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-          <a href="{{ url_for('download_resume') }}?type=aiml" target="_blank" class="btn btn-secondary" title="Download AI / ML CV">
+          <a href="https://drive.google.com/file/d/1K49BW8MRePRxQCQRpavoo0PUg5Ojo36i/view?usp=sharing" target="_blank"
+            rel="noopener" class="btn btn-secondary" title="Download AI / ML CV">
             <i class="fa-solid fa-brain" style="color: var(--accent-cyan);"></i> AI / ML CV
           </a>
-          <a href="{{ url_for('download_resume') }}?type=data-analyst" target="_blank" class="btn btn-secondary" title="Download Data Analyst CV">
+          <a href="https://drive.google.com/file/d/1RR4UEr5RfNeQB2HzlaMC5exZjvYIoezO/view?usp=sharing" target="_blank"
+            rel="noopener" class="btn btn-secondary" title="Download Data Analyst CV">
             <i class="fa-solid fa-chart-pie" style="color: var(--accent-emerald);"></i> Data Analyst CV
           </a>
         </div>
@@ -39,13 +41,16 @@
         <a href="{{ profile.github }}" target="_blank" class="social-icon" title="GitHub" aria-label="GitHub Profile">
           <i class="fa-brands fa-github"></i>
         </a>
-        <a href="{{ profile.linkedin }}" target="_blank" class="social-icon" title="LinkedIn" aria-label="LinkedIn Profile">
+        <a href="{{ profile.linkedin }}" target="_blank" class="social-icon" title="LinkedIn"
+          aria-label="LinkedIn Profile">
           <i class="fa-brands fa-linkedin"></i>
         </a>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ profile.email }}" target="_blank" class="social-icon" title="Send Email via Gmail" aria-label="Send Email">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ profile.email }}" target="_blank" class="social-icon"
+          title="Send Email via Gmail" aria-label="Send Email">
           <i class="fa-solid fa-envelope"></i>
         </a>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ profile.email }}" target="_blank" style="font-size: 0.9rem; color: var(--text-muted); font-family: var(--font-mono); display: flex; align-items: center; gap: 0.5rem; margin-left: 0.25rem; text-decoration: none;">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ profile.email }}" target="_blank"
+          style="font-size: 0.9rem; color: var(--text-muted); font-family: var(--font-mono); display: flex; align-items: center; gap: 0.5rem; margin-left: 0.25rem; text-decoration: none;">
           <span style="color: var(--accent-cyan);">•</span> {{ profile.email }}
         </a>
       </div>
@@ -76,9 +81,12 @@
         <p>&nbsp;&nbsp;name: <span class="code-string">"{{ profile.name }}"</span>,</p>
         <p>&nbsp;&nbsp;title: <span class="code-string">"Data Scientist & AI/ML"</span>,</p>
         <p>&nbsp;&nbsp;location: <span class="code-string">"{{ profile.location }}"</span>,</p>
-        <p>&nbsp;&nbsp;stack: [<span class="code-string">"Python"</span>, <span class="code-string">"PyTorch"</span>, <span class="code-string">"SQL"</span>, <span class="code-string">"Pandas"</span>, <span class="code-string">"Power BI"</span>],</p>
+        <p>&nbsp;&nbsp;stack: [<span class="code-string">"Python"</span>, <span class="code-string">"PyTorch"</span>,
+          <span class="code-string">"SQL"</span>, <span class="code-string">"Pandas"</span>, <span
+            class="code-string">"Power BI"</span>],</p>
         <p>&nbsp;&nbsp;trainModel: <span class="code-function">function</span>() {</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">"Extracting insights & predictive accuracy."</span>;</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">"Extracting
+            insights & predictive accuracy."</span>;</p>
         <p>&nbsp;&nbsp;}</p>
         <p>};</p>
         <p><span class="code-comment">&gt; dataScientist.trainModel()</span></p>
@@ -143,19 +151,22 @@
 
     <div class="skills-grid" id="skills-grid">
       {% for category in skills %}
-        {% for skill in category.skills %}
-        <div class="skill-card" data-category="{{ category.category | lower | replace(' ', '-') }}">
-          <div class="skill-header">
-            <span class="skill-name">
-              <i class="{% if 'fa-brands' in skill.icon %}{{ skill.icon }}{% else %}fa-solid {{ skill.icon }}{% endif %}" style="color: {{ skill.color }}; margin-right: 0.5rem; font-size: 1.1rem;"></i> {{ skill.name }}
-            </span>
-            <span class="skill-level" style="color: {{ skill.color }}; font-weight: 700;">{{ skill.level }}%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: {{ skill.level }}%; background: {{ skill.color }}; box-shadow: 0 0 10px {{ skill.color }};"></div>
+      {% for skill in category.skills %}
+      <div class="skill-card" data-category="{{ category.category | lower | replace(' ', '-') }}">
+        <div class="skill-header">
+          <span class="skill-name">
+            <i class="{% if 'fa-brands' in skill.icon %}{{ skill.icon }}{% else %}fa-solid {{ skill.icon }}{% endif %}"
+              style="color: {{ skill.color }}; margin-right: 0.5rem; font-size: 1.1rem;"></i> {{ skill.name }}
+          </span>
+          <span class="skill-level" style="color: {{ skill.color }}; font-weight: 700;">{{ skill.level }}%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill"
+            style="width: {{ skill.level }}%; background: {{ skill.color }}; box-shadow: 0 0 10px {{ skill.color }};">
           </div>
         </div>
-        {% endfor %}
+      </div>
+      {% endfor %}
       {% endfor %}
     </div>
   </div>
@@ -167,7 +178,8 @@
     <div class="section-header">
       <span class="section-tag">Career Journey</span>
       <h2 class="section-title">Work Experience</h2>
-      <p class="section-subtitle">My professional track record building production systems and leading engineering initiatives.</p>
+      <p class="section-subtitle">My professional track record building production systems and leading engineering
+        initiatives.</p>
     </div>
 
     <div class="timeline">
@@ -183,7 +195,7 @@
             <span class="timeline-period">{{ item.period }}</span>
           </div>
           <p class="timeline-desc">{{ item.description }}</p>
-          
+
           <ul class="achievements-list">
             {% for achievement in item.achievements %}
             <li>{{ achievement }}</li>
@@ -215,7 +227,8 @@
       {% for project in featured_projects[:4] %}
       <div class="project-card">
         <div class="project-img-wrapper">
-          <img src="{{ url_for('static', path='images/projects/' + project.image) }}" alt="{{ project.title }}" class="project-img">
+          <img src="{{ url_for('static', path='images/projects/' + project.image) }}" alt="{{ project.title }}"
+            class="project-img">
           {% if project.featured %}
           <span class="featured-badge">Featured</span>
           {% endif %}
@@ -224,18 +237,21 @@
           <span class="project-category">{{ project.category }}</span>
           <h3 class="project-title">{{ project.title }}</h3>
           <p class="project-desc">{{ project.description }}</p>
-          
+
           <!-- Technologies Bullet List -->
-          <div style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--accent-cyan); margin-bottom: 1.5rem; font-weight: 600;">
+          <div
+            style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--accent-cyan); margin-bottom: 1.5rem; font-weight: 600;">
             <i class="fa-solid fa-code" style="margin-right: 0.4rem; color: var(--text-dim);"></i>
             {{ project.tags | join(' • ') }}
           </div>
 
           <div class="project-footer" style="gap: 0.75rem; flex-wrap: wrap;">
-            <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-primary" style="padding: 0.45rem 1rem; font-size: 0.85rem;">
+            <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-primary"
+              style="padding: 0.45rem 1rem; font-size: 0.85rem;">
               <i class="fa-solid fa-eye"></i> View Project
             </a>
-            <a href="{{ project.repo_url }}" target="_blank" class="btn btn-secondary" style="padding: 0.45rem 1rem; font-size: 0.85rem;">
+            <a href="{{ project.repo_url }}" target="_blank" class="btn btn-secondary"
+              style="padding: 0.45rem 1rem; font-size: 0.85rem;">
               <i class="fa-brands fa-github"></i> GitHub
             </a>
           </div>
@@ -246,8 +262,10 @@
 
     <!-- View All Projects CTA -->
     <div style="text-align: center; margin-top: 3.5rem;">
-      <a href="{{ url_for('projects_list') }}" class="btn btn-secondary" style="padding: 0.85rem 2.25rem; font-size: 1.05rem; border-color: var(--accent-cyan);">
-        View All Projects <i class="fa-solid fa-arrow-right" style="margin-left: 0.5rem; color: var(--accent-cyan);"></i>
+      <a href="{{ url_for('projects_list') }}" class="btn btn-secondary"
+        style="padding: 0.85rem 2.25rem; font-size: 1.05rem; border-color: var(--accent-cyan);">
+        View All Projects <i class="fa-solid fa-arrow-right"
+          style="margin-left: 0.5rem; color: var(--accent-cyan);"></i>
       </a>
     </div>
   </div>
@@ -283,13 +301,16 @@
         <div class="edu-card-scroll">
           <div style="display: flex; flex-direction: column; gap: 0.85rem; margin-top: 0.5rem;">
             {% for cert in education.certifications %}
-            <div style="padding: 0.85rem 1rem; background: var(--glass-bg); border-radius: var(--radius-md); border: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+            <div
+              style="padding: 0.85rem 1rem; background: var(--glass-bg); border-radius: var(--radius-md); border: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
               <div>
                 <div style="font-weight: 700; color: var(--accent-cyan); font-size: 0.95rem;">{{ cert.title }}</div>
-                <div style="font-size: 0.8rem; color: var(--text-muted);">Issuer: {{ cert.issuer }} ({{ cert.date }})</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Issuer: {{ cert.issuer }} ({{ cert.date }})
+                </div>
               </div>
               {% if cert.credential_url %}
-              <a href="{{ cert.credential_url }}" target="_blank" class="btn btn-secondary" style="padding: 0.35rem 0.85rem; font-size: 0.8rem; gap: 0.4rem; border-color: var(--accent-cyan);">
+              <a href="{{ cert.credential_url }}" target="_blank" class="btn btn-secondary"
+                style="padding: 0.35rem 0.85rem; font-size: 0.8rem; gap: 0.4rem; border-color: var(--accent-cyan);">
                 <i class="fa-brands fa-google-drive" style="color: var(--accent-cyan);"></i> View Certificate
               </a>
               {% endif %}
@@ -308,18 +329,19 @@
     <div class="section-header">
       <span class="section-tag">Get In Touch</span>
       <h2 class="section-title">Let's Connect</h2>
-      <p class="section-subtitle">Have a project in mind or interested in working together? Send me a message!</p>
+      <p class="section-subtitle">Have a project in mind or interested in working together? Send me a message! your message will be send as email to me</p>
     </div>
 
     <div class="contact-grid">
       <div class="contact-info-card">
         <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;" class="gradient-text">Contact Information</h3>
-        
+
         <div class="contact-item">
           <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
           <div>
             <div class="contact-lbl">Email Address</div>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ profile.email }}" target="_blank" class="contact-val" style="text-decoration: none; color: var(--accent-cyan);">{{ profile.email }}</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ profile.email }}" target="_blank"
+              class="contact-val" style="text-decoration: none; color: var(--accent-cyan);">{{ profile.email }}</a>
           </div>
         </div>
 
@@ -340,9 +362,12 @@
         </div>
 
         <div class="social-bar">
-          <a href="{{ profile.github }}" target="_blank" class="social-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
-          <a href="{{ profile.linkedin }}" target="_blank" class="social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="{{ profile.twitter }}" target="_blank" class="social-icon" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="{{ profile.github }}" target="_blank" class="social-icon" title="GitHub"><i
+              class="fa-brands fa-github"></i></a>
+          <a href="{{ profile.linkedin }}" target="_blank" class="social-icon" title="LinkedIn"><i
+              class="fa-brands fa-linkedin"></i></a>
+          <a href="{{ profile.twitter }}" target="_blank" class="social-icon" title="Twitter"><i
+              class="fa-brands fa-x-twitter"></i></a>
         </div>
       </div>
 
@@ -357,17 +382,20 @@
 
         <div class="form-group">
           <label class="form-label" for="contact-email">Email Address</label>
-          <input type="email" id="contact-email" name="email" class="form-input" placeholder="john@example.com" required>
+          <input type="email" id="contact-email" name="email" class="form-input" placeholder="john@example.com"
+            required>
         </div>
 
         <div class="form-group">
           <label class="form-label" for="contact-subject">Subject</label>
-          <input type="text" id="contact-subject" name="subject" class="form-input" placeholder="Project Opportunity / Collaboration">
+          <input type="text" id="contact-subject" name="subject" class="form-input"
+            placeholder="Project Opportunity / Collaboration">
         </div>
 
         <div class="form-group">
           <label class="form-label" for="contact-message">Message</label>
-          <textarea id="contact-message" name="message" class="form-textarea" placeholder="Hello Akhil, I would like to discuss..." required></textarea>
+          <textarea id="contact-message" name="message" class="form-textarea"
+            placeholder="Hello Akhil, I would like to discuss..." required></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary" style="justify-content: center; width: 100%;" id="submit-btn">
@@ -419,7 +447,7 @@
   function filterSkills(category) {
     const cards = document.querySelectorAll('.skill-card');
     const buttons = document.querySelectorAll('.skills-tabs .tab-btn');
-    
+
     buttons.forEach(btn => btn.classList.remove('active'));
     event.currentTarget.classList.add('active');
 
@@ -457,7 +485,7 @@
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
 
