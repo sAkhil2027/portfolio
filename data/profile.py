@@ -14,7 +14,7 @@ PROFILE = {
         "Tableau/Power BI, and modern LLM frameworks."
     ),
     "email": "sakhilvikram@gmail.com",
-    "location": "Bangalore, India",
+    "location": "Kanpur, Uttar Pradesh",
     "status": "Available for Data Science & AI roles",
     "avatar_text": "AVS",
     "github": "https://github.com/sAkhil2027",
