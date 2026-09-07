@@ -4,32 +4,40 @@ Standardized for Pydantic Experience Schema and RAG Document Ingestion.
 """
 
 EXPERIENCE = [
-    {
-        "company": "Cognitive AI Labs",
-        "role": "AI/ML Engineer & RAG System Developer",
-        "type": "Full-Time",
+        {
+        "company": "SHIELDOVE",
+        "role": "AI/ML Lead Intern",
+        "type": "Internship",
         "start_date": "2026",
         "end_date": "Present",
         "year": "2026",
         "period": "2026 - Present",
-        "location": "Remote / India",
-        "description": "Leading RAG pipeline development, agentic workflows with Model Context Protocol (MCP), and LLM fine-tuning.",
+        "location": "India",
+        "description": "Worked on building and improving machine learning and deep learning models, developing LLM and NLP-based AI features, and integrating AI solutions into real-world applications.",
         "achievements": [
-            "Architected YouTube AI RAG system with ChromaDB and Groq Llama 3.3 70B, reducing transcript analysis time by 80%.",
-            "Developed FastMCP tools for AI agent integrations (Cursor, Claude Desktop, Antigravity) supporting automated tool use.",
-            "Engineered end-to-end FastAPI microservices serving real-time vector retrieval and LLM responses."
+            "Built, trained, and improved machine learning and deep learning models for AI-driven applications.",
+            "Developed AI features using Large Language Models (LLMs), Natural Language Processing (NLP), and modern AI techniques.",
+            "Integrated AI/ML solutions into real-world applications and collaborated with the development team on end-to-end AI projects.",
+            "Researched and evaluated emerging AI tools and techniques to improve model capabilities and application performance."
         ],
-        "technologies": ["Python", "FastAPI", "RAG", "LangChain", "ChromaDB", "Llama 3.3 70B", "Groq", "MCP", "Docker"]
+        "technologies": [
+            "Python",
+            "Machine Learning",
+            "Deep Learning",
+            "LLMs",
+            "NLP",
+            "AI/ML Frameworks"
+        ]
     },
     {
         "company": "Smart India Hackathon (SIH)",
-        "role": "SIH National Finalist & Lead AI Developer",
+        "role": "Backend and model training",
         "type": "Hackathon",
         "start_date": "2025",
         "end_date": "2026",
         "year": "2025 - 2026",
         "period": "2025 - 2026",
-        "location": "Ministry of Education / Campus",
+        "location": "IIIT BHAGALPUR",
         "description": "Selected twice by IIIT Bhagalpur to represent the institute at the Smart India Hackathon national competition, building transactional data pipelines and Power BI dashboards.",
         "achievements": [
             "Selected twice by IIIT Bhagalpur for national-level SIH hackathons in both 2025 and 2026.",
@@ -40,7 +48,7 @@ EXPERIENCE = [
     },
     {
         "company": "National Data Science & AI Hackathon",
-        "role": "1st Place Winner & Lead AI Developer",
+        "role": "Data cleaning and preprocessing pipeline building",
         "type": "Hackathon",
         "start_date": "2025",
         "end_date": "2025",
@@ -52,7 +60,7 @@ EXPERIENCE = [
             "Awarded 1st place among 120+ participant teams for innovative automated ML & time-series forecasting pipeline.",
             "Engineered an interactive Streamlit application displaying real-time anomaly detection and predictive alerts."
         ],
-        "technologies": ["Python", "Prophet", "Streamlit", "XGBoost", "FastAPI", "Plotly", "Git"]
+        "technologies": ["Python", "Excel","Power BI","Prophet", "Streamlit", "XGBoost", "FastAPI", "Matplotlib","Pandas","Seaborn", "Git"]
     },
     {
         "company": "IIIT Bhagalpur Hackathon",
