@@ -23,7 +23,13 @@ class TextEmbedder:
     def _init_model(self):
         if self._initialized:
             return
-        if os.environ.get("USE_LIGHTWEIGHT_EMBEDDINGS") == "1" or os.environ.get("FAST_EVAL_MODE") == "1":
+        # Default to lightweight deterministic vectorizer unless heavy embeddings are explicitly requested
+        # Protects cloud free-tiers (Render 512MB RAM) against PyTorch OOM crashes
+        enable_heavy = os.environ.get("ENABLE_HEAVY_EMBEDDINGS", "0").lower() in ("1", "true")
+        use_lightweight = os.environ.get("USE_LIGHTWEIGHT_EMBEDDINGS", "1").lower() in ("1", "true")
+        fast_eval = os.environ.get("FAST_EVAL_MODE", "0").lower() in ("1", "true")
+
+        if not enable_heavy or use_lightweight or fast_eval:
             self._st_model = None
             self._initialized = True
             return

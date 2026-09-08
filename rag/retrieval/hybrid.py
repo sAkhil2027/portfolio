@@ -23,8 +23,23 @@ class HybridRetriever:
         """
         Performs hybrid retrieval using Reciprocal Rank Fusion (RRF) with optional metadata filtering.
         """
-        bm25_results = self.bm25.search(query, top_k=top_k * 2, metadata_filter=metadata_filter)
-        vector_results = self.vector.search(query, top_k=top_k * 2, metadata_filter=metadata_filter)
+        bm25_results = []
+        try:
+            bm25_results = self.bm25.search(query, top_k=top_k * 2, metadata_filter=metadata_filter)
+        except Exception as e:
+            print(f"[HybridRetriever] BM25 search warning: {e}")
+
+        vector_results = []
+        try:
+            vector_results = self.vector.search(query, top_k=top_k * 2, metadata_filter=metadata_filter)
+        except Exception as e:
+            print(f"[HybridRetriever] Vector search warning: {e}")
+
+        # If only BM25 returned results, return them directly
+        if bm25_results and not vector_results:
+            return bm25_results[:top_k]
+        if vector_results and not bm25_results:
+            return vector_results[:top_k]
 
         chunk_map: Dict[str, DocumentChunk] = {}
         rrf_scores: Dict[str, float] = {}

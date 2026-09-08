@@ -146,6 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let fullAnswerAcc = '';
     let hasReceivedFirstToken = false;
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 25000);
+
     try {
       const response = await fetch('/api/chat/stream', {
         method: 'POST',
@@ -153,12 +156,15 @@ document.addEventListener('DOMContentLoaded', () => {
           'Content-Type': 'application/json',
           'Accept': 'text/event-stream'
         },
+        signal: controller.signal,
         body: JSON.stringify({
           query: userText,
           conversation_id: conversationId,
           history: conversationHistory.slice(-10)
         })
       });
+
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         throw new Error(`Server returned HTTP ${response.status}`);
@@ -197,8 +203,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
     } catch (err) {
+      clearTimeout(timeoutId);
       console.error('[ChatUI] Stream connection error:', err);
-      textContentEl.innerHTML = `<span class="chat-error-text"><i class="fa-solid fa-circle-exclamation"></i> Unable to connect to assistant. Please try again or use the contact form.</span>`;
+      const isTimeout = err.name === 'AbortError';
+      const msg = isTimeout
+        ? 'Response timed out. The server may be warming up; please try again.'
+        : 'Unable to connect to assistant. Please try again or use the contact form.';
+      textContentEl.innerHTML = `<span class="chat-error-text"><i class="fa-solid fa-circle-exclamation"></i> ${msg}</span>`;
     } finally {
       isStreaming = false;
       if (chatInput) {

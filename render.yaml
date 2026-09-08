@@ -18,6 +18,8 @@ services:
         value: "0"
       - key: GROQ_API_KEY
         sync: false
+      - key: LLM_MODEL
+        value: qwen/qwen3.8-27b
       - key: SMTP_HOST
         value: smtp.gmail.com
       - key: SMTP_PORT

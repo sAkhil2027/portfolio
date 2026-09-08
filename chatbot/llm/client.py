@@ -77,13 +77,12 @@ class LLMClient:
 
     async def _stream_groq(self, prompt: str, api_key: str) -> AsyncGenerator[str, None]:
         """
-        Streams completions from Groq Cloud OpenAI-compatible endpoint in real time.
+        Streams completions from Groq Cloud OpenAI-compatible endpoint in real time using httpx.
         """
         url = "https://api.groq.com/openai/v1/chat/completions"
         headers = {
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             "Accept": "text/event-stream"
         }
         payload = {
@@ -96,37 +95,64 @@ class LLMClient:
             "max_tokens": 800
         }
 
-        # Run HTTP stream in thread pool to maintain non-blocking async execution
-        loop = asyncio.get_event_loop()
+        try:
+            import httpx
+            async with httpx.AsyncClient(timeout=httpx.Timeout(20.0, connect=8.0)) as client:
+                async with client.stream("POST", url, headers=headers, json=payload) as response:
+                    if response.status_code != 200:
+                        err_bytes = await response.aread()
+                        raise RuntimeError(f"Groq API error {response.status_code}: {err_bytes.decode('utf-8', errors='ignore')}")
 
-        def make_request():
-            req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers=headers)
-            return urllib.request.urlopen(req, timeout=15)
+                    async for line in response.aiter_lines():
+                        line = line.strip()
+                        if not line or not line.startswith("data:"):
+                            continue
 
-        response = await loop.run_in_executor(None, make_request)
+                        data_str = line[5:].strip()
+                        if data_str == "[DONE]":
+                            break
 
-        while True:
-            line_bytes = await loop.run_in_executor(None, response.readline)
-            if not line_bytes:
-                break
+                        try:
+                            data = json.loads(data_str)
+                            delta = data.get("choices", [{}])[0].get("delta", {})
+                            content = delta.get("content")
+                            if content:
+                                yield content
+                                await asyncio.sleep(0.005)
+                        except Exception:
+                            continue
+        except ImportError:
+            # Fallback to urllib if httpx is not available
+            loop = asyncio.get_running_loop()
 
-            line = line_bytes.decode("utf-8").strip()
-            if not line or not line.startswith("data:"):
-                continue
+            def make_request():
+                req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers=headers)
+                return urllib.request.urlopen(req, timeout=15)
 
-            data_str = line[5:].strip()
-            if data_str == "[DONE]":
-                break
+            response = await loop.run_in_executor(None, make_request)
 
-            try:
-                data = json.loads(data_str)
-                delta = data.get("choices", [{}])[0].get("delta", {})
-                content = delta.get("content")
-                if content:
-                    yield content
-                    await asyncio.sleep(0.005)
-            except Exception:
-                continue
+            while True:
+                line_bytes = await loop.run_in_executor(None, response.readline)
+                if not line_bytes:
+                    break
+
+                line = line_bytes.decode("utf-8").strip()
+                if not line or not line.startswith("data:"):
+                    continue
+
+                data_str = line[5:].strip()
+                if data_str == "[DONE]":
+                    break
+
+                try:
+                    data = json.loads(data_str)
+                    delta = data.get("choices", [{}])[0].get("delta", {})
+                    content = delta.get("content")
+                    if content:
+                        yield content
+                        await asyncio.sleep(0.005)
+                except Exception:
+                    continue
 
     async def _fallback_synthesize_stream(self, prompt: str, context: str) -> AsyncGenerator[str, None]:
         """
