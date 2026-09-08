@@ -28,4 +28,4 @@ EXPOSE 5000
 ENV PORT=5000
 ENV PYTHONUNBUFFERED=1
 
-CMD ["python", "app/main.py"]
+CMD ["python", "-m", "app.main"]
