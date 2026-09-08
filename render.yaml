@@ -1,0 +1,18 @@
+# Render configuration for the FastAPI portfolio application
+# This file tells Render how to build and run the service.
+# It uses the existing Dockerfile in the repository.
+# The health‑check endpoint is '/' which returns a simple JSON payload.
+# Adjust the environment variables below to match your secrets.
+
+services:
+  - type: web
+    name: portfolio
+    env: docker
+    dockerfilePath: Dockerfile
+    healthCheckPath: "/"
+    env:
+      - key: OPENAI_API_KEY
+        value: "${OPENAI_API_KEY}"
+      - key: FAST_EVAL_MODE
+        value: "0"
+    autoDeploy: true

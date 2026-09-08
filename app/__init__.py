@@ -55,6 +55,10 @@ def create_app() -> FastAPI:
         lifespan=lifespan
     )
 
+    @app.get("/", include_in_schema=False)
+    async def root_health():
+        return {"status": "ok"}
+
     # Mount static files directory at /static
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
