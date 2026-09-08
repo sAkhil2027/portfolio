@@ -10,8 +10,6 @@ services:
     healthCheckPath: /health
     autoDeploy: true
     envVars:
-      - key: PORT
-        value: "5000"
       - key: ENVIRONMENT
         value: development
       - key: USE_LIGHTWEIGHT_EMBEDDINGS

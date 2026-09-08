@@ -23,9 +23,9 @@ COPY --from=builder /install /usr/local
 # Copy application source code
 COPY . /app
 
-EXPOSE 5000
+EXPOSE 10000
 
-ENV PORT=5000
+ENV PORT=10000
 ENV PYTHONUNBUFFERED=1
 
 CMD ["python", "-m", "app.main"]

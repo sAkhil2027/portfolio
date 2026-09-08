@@ -29,8 +29,8 @@ async def lifespan(app: FastAPI):
     print("[FastAPI Lifespan] Initializing and pre-loading RAG Pipeline into app.state...")
     pipeline = RAGPipeline(knowledge_dir=KNOWLEDGE_DIR)
     
-    # Fast evaluation embedder fallback check
-    if os.environ.get("FAST_EVAL_MODE") == "1":
+    # Fast evaluation or lightweight embedder fallback check
+    if os.environ.get("FAST_EVAL_MODE") == "1" or os.environ.get("USE_LIGHTWEIGHT_EMBEDDINGS") == "1":
         pipeline.embedder._initialized = True
         pipeline.embedder._st_model = None
 

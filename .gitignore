@@ -41,6 +41,3 @@ scratch/
 .coverage
 htmlcov/
 
-# Local RAG generated cache indices (can be re-generated on startup or via scripts)
-knowledge/bm25_index.pkl
-knowledge/vector_index.json
