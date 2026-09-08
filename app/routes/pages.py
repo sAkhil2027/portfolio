@@ -50,7 +50,13 @@ def send_contact_email(name: str, email: str, subject: str, message: str):
     """Sends email notification using Python SMTP in background task."""
     print(f"[CONTACT FORM] From: {name} ({email}) | Subject: {subject} | Msg: {message}")
 
-    if not SMTP_USER or not SMTP_PASSWORD:
+    smtp_user = (os.getenv("SMTP_USER") or SMTP_USER).strip()
+    smtp_password = (os.getenv("SMTP_PASSWORD") or SMTP_PASSWORD).strip().replace(" ", "")
+    smtp_host = os.getenv("SMTP_HOST", SMTP_HOST).strip()
+    smtp_port = int(os.getenv("SMTP_PORT", str(SMTP_PORT)))
+    notification_email = (os.getenv("NOTIFICATION_EMAIL") or NOTIFICATION_EMAIL or smtp_user).strip()
+
+    if not smtp_user or not smtp_password:
         print(
             "[SMTP NOTE] SMTP_USER or SMTP_PASSWORD not set in environment. "
             "Set SMTP_USER and SMTP_PASSWORD environment variables to deliver emails directly to inbox."
@@ -59,8 +65,9 @@ def send_contact_email(name: str, email: str, subject: str, message: str):
 
     try:
         msg = MIMEMultipart()
-        msg['From'] = SMTP_USER
-        msg['To'] = NOTIFICATION_EMAIL
+        msg['From'] = smtp_user
+        msg['To'] = notification_email
+        msg['Reply-To'] = email
         msg['Subject'] = f"🚀 Portfolio Contact: {subject or 'New Inquiry'} from {name}"
 
         body = (
@@ -76,11 +83,11 @@ def send_contact_email(name: str, email: str, subject: str, message: str):
         )
         msg.attach(MIMEText(body, 'plain'))
 
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+        with smtplib.SMTP(smtp_host, smtp_port, timeout=15) as server:
             server.starttls()
-            server.login(SMTP_USER, SMTP_PASSWORD)
+            server.login(smtp_user, smtp_password)
             server.send_message(msg)
-            print(f"[SMTP SUCCESS] Contact notification email delivered to {NOTIFICATION_EMAIL}")
+            print(f"[SMTP SUCCESS] Contact notification email delivered to {notification_email}")
     except Exception as e:
         print(f"[SMTP ERROR] Failed to send email: {e}")
 

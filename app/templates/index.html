@@ -372,7 +372,7 @@
       </div>
 
       <!-- AJAX Contact Form -->
-      <form class="contact-form" id="contact-form">
+      <form class="contact-form" id="contact-form" action="javascript:void(0);" onsubmit="return false;">
         <div id="toast" class="toast-msg"></div>
 
         <div class="form-group">
@@ -406,9 +406,6 @@
   </div>
 </section>
 
-{% endblock %}
-
-{% block extra_scripts %}
 <script>
   // Dynamic Typing Animation in Hero
   const phrases = ["Data Scientist", "AI/ML Specialist", "Data Analyst", "LLM & Predictive Modeling"];
@@ -514,10 +511,13 @@
           toast.className = 'toast-msg toast-error';
           toast.textContent = resData.message || 'An error occurred. Please try again.';
         }
+        toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        setTimeout(() => { toast.style.display = 'none'; }, 7000);
       } catch (err) {
         toast.style.display = 'block';
         toast.className = 'toast-msg toast-error';
         toast.textContent = 'Failed to submit form. Please check your network connection.';
+        setTimeout(() => { toast.style.display = 'none'; }, 7000);
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
