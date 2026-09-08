@@ -1,0 +1,31 @@
+# Git & IDE metadata
+.git/
+.gitignore
+.idea/
+.vscode/
+
+# Virtual Environments (Prevent copying large Windows binaries into Linux container)
+.venv/
+venv/
+env/
+ENV/
+
+# Secrets & Local Configurations (Prevent baking private keys/passwords into images)
+.env
+*.env
+*.pem
+*.key
+
+# Python Bytecode & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Tests & Scratch files
+tests/
+scratch/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log

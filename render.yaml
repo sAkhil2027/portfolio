@@ -1,18 +1,32 @@
-# Render configuration for the FastAPI portfolio application
-# This file tells Render how to build and run the service.
-# It uses the existing Dockerfile in the repository.
-# The health‑check endpoint is '/' which returns a simple JSON payload.
-# Adjust the environment variables below to match your secrets.
+# Render Blueprint configuration for Akhil's Portfolio Web Application
+# Docs: https://render.com/docs/blueprint-spec
 
 services:
   - type: web
     name: portfolio
     env: docker
+    plan: free
     dockerfilePath: Dockerfile
-    healthCheckPath: "/"
-    env:
-      - key: OPENAI_API_KEY
-        value: "${OPENAI_API_KEY}"
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: "5000"
+      - key: ENVIRONMENT
+        value: development
+      - key: USE_LIGHTWEIGHT_EMBEDDINGS
+        value: "1"
       - key: FAST_EVAL_MODE
         value: "0"
-    autoDeploy: true
+      - key: GROQ_API_KEY
+        sync: false
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: NOTIFICATION_EMAIL
+        value: sakhil2027@gmail.com

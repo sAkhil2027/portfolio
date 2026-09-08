@@ -1,16 +1,18 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
+
+# Virtual Environments
 .venv/
-env/
 venv/
+env/
 ENV/
-.idea/
-.vscode/
-.DS_Store
-.env
-*.env
-# Secrets & environment files
+env.bak/
+venv.bak/
+
+# Environment variables and secrets (CRITICAL: Never commit to version control)
 .env
 .env.*
 *.env
@@ -19,12 +21,26 @@ ENV/
 *.pem
 *.key
 *.crt
-# Logs and temporary files
+
+# IDE & Editor artifacts
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs, Databases & Local State
 *.log
 *.sqlite
 *.db
-# Qdrant / vector store data (if stored locally)
-knowledge/*.pkl
-knowledge/*.json
-# Scratch / generated files you don't want in repo
+
+# Temporary & Scratch testing directories
 scratch/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local RAG generated cache indices (can be re-generated on startup or via scripts)
+knowledge/bm25_index.pkl
+knowledge/vector_index.json
