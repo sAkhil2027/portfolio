@@ -23,7 +23,24 @@ class Reranker:
         if not candidates:
             return []
 
-        q_terms = set(re.findall(r"\w+", query.lower()))
+        STOPWORDS = {
+            "does", "do", "did", "have", "has", "had", "is", "am", "are", "was", "were",
+            "the", "a", "an", "and", "or", "in", "on", "at", "to", "for", "of", "with",
+            "by", "any", "all", "some", "tell", "me", "about", "what", "which", "who",
+            "how", "where", "when", "why", "can", "could", "would", "should", "his", "her",
+            "their", "akhil", "akhils"
+        }
+        raw_terms = set(re.findall(r"\w+", query.lower()))
+        content_terms = raw_terms - STOPWORDS
+        base_terms = content_terms if content_terms else raw_terms
+
+        expanded_q_terms = set(base_terms)
+        for t in base_terms:
+            if t.endswith("s") and len(t) > 3:
+                expanded_q_terms.add(t[:-1])
+            else:
+                expanded_q_terms.add(t + "s")
+        q_terms = expanded_q_terms
         query_lower = query.lower().strip()
 
         reranked = []

@@ -85,6 +85,15 @@ class RAGPipeline:
         else:
             results = self.hybrid_retriever.search(query_text, top_k=fetch_k, metadata_filter=metadata_filter)
 
+        # Automatic fallback: if filtered search returned no matches, search across entire knowledge base
+        if not results and metadata_filter:
+            if mode == "bm25":
+                results = self.bm25_retriever.search(query_text, top_k=fetch_k, metadata_filter=None)
+            elif mode == "vector":
+                results = self.vector_retriever.search(query_text, top_k=fetch_k, metadata_filter=None)
+            else:
+                results = self.hybrid_retriever.search(query_text, top_k=fetch_k, metadata_filter=None)
+
         if min_score > 0.0:
             results = [r for r in results if r.score >= min_score]
 
