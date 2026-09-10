@@ -92,7 +92,7 @@ class LLMClient:
             ],
             "stream": True,
             "temperature": 0.3,
-            "max_tokens": 800
+            "max_tokens": 250
         }
 
         try:
@@ -166,8 +166,8 @@ class LLMClient:
         else:
             # Extract key context snippet cleanly
             lines = [line for line in context.split("\n") if line.strip() and not line.startswith("---") and not line.startswith("[Source")]
-            snippet = " ".join(lines[:6]) if lines else context[:300]
-            answer = f"Based on Akhil's portfolio records:\n\n{snippet}\n\nFeel free to explore the relevant project details and skills section for more information!"
+            snippet = " ".join(lines[:3]) if lines else context[:180]
+            answer = f"{snippet}\n\nFeel free to explore the relevant project details or contact Akhil directly!"
 
         # Stream words as tokens with tiny realistic delay
         words = answer.split(" ")

@@ -289,10 +289,10 @@ async def health_check_api(request: Request):
     is_ready = pipeline is not None
     chunks_count = len(pipeline.chunks) if pipeline else 0
     qdrant_connected = (pipeline and hasattr(pipeline.vector_retriever, "_is_qdrant_available") and pipeline.vector_retriever._is_qdrant_available)
-    qdrant_status = "connected" if qdrant_connected else ("disconnected" if environment == "production" else "in_memory_fallback")
+    qdrant_status = "connected" if qdrant_connected else ("in_memory_preloaded" if chunks_count > 0 else ("disconnected" if environment == "production" else "in_memory_fallback"))
     model_name = os.environ.get("EMBEDDING_MODEL", "all-MiniLM-L6-v2")
 
-    is_healthy = is_ready and (qdrant_connected or environment != "production")
+    is_healthy = is_ready and (chunks_count > 0 or qdrant_connected or environment != "production")
     status_code = 200 if is_healthy else 503
 
     return JSONResponse(status_code=status_code, content={
