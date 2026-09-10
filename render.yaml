@@ -29,4 +29,13 @@ services:
       - key: SMTP_PASSWORD
         sync: false
       - key: NOTIFICATION_EMAIL
-        value: sakhil2027@gmail.com
+        value: akhil.230103005@iiitbh.ac.in
+      - key: QDRANT_URL
+        sync: false
+      - key: QDRANT_API_KEY
+        sync: false
+      - key: QDRANT_COLLECTION
+        value: portfolio_knowledge
+      - key: HF_TOKEN
+        sync: false
+
