@@ -27,10 +27,11 @@ class QueryProcessor:
     }
 
     SOURCE_TYPE_PATTERNS = {
-        r"\b(project|projects|work|built|github|code)\b": "project",
+        r"\b(project|projects|repo|github|codebase)\b": "project",
         r"\b(experience|work history|job|role|company|internship|career)\b": "experience",
-        r"\b(education|degree|gpa|university|college|certification|course)\b": "education",
-        r"\b(skill|skills|python|pytorch|sql|docker|fastapi|rag)\b": "skill",
+        r"\b(education|degree|gpa|cgpa|university|college|b\.?tech|graduat\w+)\b": "education",
+        r"\b(certif\w+|credential\w+|license\w*)\b": "certification",
+        r"\b(skill|skills|tech stack|technologies)\b": "skill",
     }
 
     PRONOUN_PATTERNS = r"\b(it|that|this|the project|that project|his role|their work)\b"
