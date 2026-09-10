@@ -1,38 +1,36 @@
 [
   {
-    "company": "Cognitive AI Labs",
-    "role": "AI/ML Engineer & RAG System Developer",
-    "type": "Full-Time",
+    "company": "SHIELDOVE",
+    "role": "AI/ML Lead Intern",
+    "type": "Internship",
     "start_date": "2026",
     "end_date": "Present",
-    "location": "Remote / India",
-    "description": "Leading RAG pipeline development, agentic workflows with Model Context Protocol (MCP), and LLM fine-tuning.",
+    "location": "India",
+    "description": "Worked on building and improving machine learning and deep learning models, developing LLM and NLP-based AI features, and integrating AI solutions into real-world applications.",
     "technologies": [
       "Python",
-      "FastAPI",
-      "Retrieval-Augmented Generation (RAG)",
-      "LangChain",
-      "ChromaDB",
-      "Llama 3.3 70B",
-      "Groq",
-      "Model Context Protocol (MCP)",
-      "Docker"
+      "Machine Learning",
+      "Deep Learning",
+      "LLMs",
+      "NLP",
+      "AI/ML Frameworks"
     ],
     "achievements": [
-      "Architected YouTube AI RAG system with ChromaDB and Groq Llama 3.3 70B, reducing transcript analysis time by 80%.",
-      "Developed FastMCP tools for AI agent integrations (Cursor, Claude Desktop, Antigravity) supporting automated tool use.",
-      "Engineered end-to-end FastAPI microservices serving real-time vector retrieval and LLM responses."
+      "Built, trained, and improved machine learning and deep learning models for AI-driven applications.",
+      "Developed AI features using Large Language Models (LLMs), Natural Language Processing (NLP), and modern AI techniques.",
+      "Integrated AI/ML solutions into real-world applications and collaborated with the development team on end-to-end AI projects.",
+      "Researched and evaluated emerging AI tools and techniques to improve model capabilities and application performance."
     ],
     "year": "2026",
     "period": "2026 - Present"
   },
   {
     "company": "Smart India Hackathon (SIH)",
-    "role": "SIH National Finalist & Lead AI Developer",
+    "role": "Backend and model training",
     "type": "Hackathon",
     "start_date": "2025",
     "end_date": "2026",
-    "location": "Ministry of Education / Campus",
+    "location": "IIIT BHAGALPUR",
     "description": "Selected twice by IIIT Bhagalpur to represent the institute at the Smart India Hackathon national competition, building transactional data pipelines and Power BI dashboards.",
     "technologies": [
       "Python",
@@ -53,7 +51,7 @@
   },
   {
     "company": "National Data Science & AI Hackathon",
-    "role": "1st Place Winner & Lead AI Developer",
+    "role": "Data cleaning and preprocessing pipeline building",
     "type": "Hackathon",
     "start_date": "2025",
     "end_date": "2025",
@@ -61,11 +59,15 @@
     "description": "Built a real-time predictive analytics & automated forecasting engine during 48-hour intensive hackathon.",
     "technologies": [
       "Python",
+      "Excel",
+      "Power BI",
       "Prophet",
       "Streamlit",
       "XGBoost",
       "FastAPI",
-      "Plotly",
+      "Matplotlib",
+      "Pandas",
+      "Seaborn",
       "Git & GitHub"
     ],
     "achievements": [

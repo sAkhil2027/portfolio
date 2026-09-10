@@ -35,7 +35,7 @@
       "18% Churn Reduced",
       "< 25ms Inference Speed"
     ],
-    "github": "https://github.com/akhil-data/customer-churn-ml",
+    "github": "https://github.com/sAkhil2027?tab=repositories",
     "demo": "https://churn-ml-demo.akhil.dev",
     "slug": "customer-churn-prediction-ml",
     "category": "Machine Learning",
@@ -89,12 +89,12 @@
       "~5.6K Retrieved Context",
       "800 / 150 Chunk / Overlap"
     ],
-    "github": "https://github.com/sAkhil2027/yt_video-rag-chatbot",
+    "github": "https://github.com/sAkhil2027?tab=repositories",
     "demo": "",
     "slug": "youtube-ai-rag-chatbot",
     "category": "Generative AI",
     "featured": true,
-    "image": "project-yt-helper.png",
+    "image": "project-cloud-analytics.png",
     "long_description": "YT Helper is an end-to-end Retrieval-Augmented Generation (RAG) application that enables users to ask questions about YouTube videos without watching the entire video. The system extracts available transcript content using YouTubeTranscriptApi, splits it into semantic chunks, generates 384-dimensional dense embeddings locally with SentenceTransformers, and persists them in ChromaDB.",
     "architecture_highlights": "Modular RAG architecture consisting of YouTube transcript extraction, SentenceTransformer embeddings, ChromaDB vector storage, cosine retrieval, and Groq Llama 3.3 70B generation."
   },
@@ -138,12 +138,12 @@
       "0.75 Feature Sampling",
       "High R² + Low MAE Evaluation Metrics"
     ],
-    "github": "https://github.com/sAkhil2027/Laptop-Price-Prediction",
+    "github": "https://github.com/sAkhil2027?tab=repositories",
     "demo": "",
     "slug": "laptop-price-prediction",
     "category": "Machine Learning",
     "featured": false,
-    "image": "project-laptop-price.png",
+    "image": "project-cloud-analytics.png",
     "long_description": "Laptop Price Prediction is an end-to-end Machine Learning project that estimates laptop prices based on specifications such as RAM, processor, GPU, storage, display, operating system, and laptop type. The system performs data cleaning, feature engineering, exploratory data analysis, categorical encoding, model training, and evaluation using a Scikit-learn pipeline. A Random Forest Regressor is trained on the processed features and serialized using Pickle for future deployment in applications such as Streamlit or Flask.",
     "architecture_highlights": "End-to-end machine learning architecture consisting of laptop specification preprocessing, feature engineering, exploratory analysis, categorical encoding through ColumnTransformer, Random Forest regression, model evaluation using R² and MAE, and Pickle-based model serialization."
   },
@@ -191,12 +191,12 @@
       "SQLite Persistent Memory",
       "Real-time Response Streaming"
     ],
-    "github": "https://github.com/sAkhil2027/panscience-Multi-Utility-RAG-Chatbot-",
+    "github": "https://github.com/sAkhil2027?tab=repositories",
     "demo": "",
     "slug": "multi-utility-rag-chatbot",
     "category": "Generative AI",
     "featured": false,
-    "image": "project-multi-utility-rag.png",
+    "image": "project-cloud-analytics.png",
     "long_description": "Multi Utility RAG Chatbot is an end-to-end conversational AI system that combines document retrieval, tool calling, stateful workflows, and persistent memory. Users can upload PDFs, which are parsed using PyPDFLoader, split into overlapping chunks, converted into embeddings using the all-MiniLM-L6-v2 SentenceTransformer model, and stored in a FAISS vector database.",
     "architecture_highlights": "Stateful agentic RAG architecture consisting of PDF ingestion, PyPDFLoader parsing, recursive text chunking, HuggingFace embeddings, FAISS vector storage, similarity retrieval, LangGraph workflow orchestration, multi-tool execution, OpenRouter GPT-4o-mini generation, SQLite-based checkpointing, and Streamlit response streaming."
   },
@@ -239,12 +239,12 @@
       "13 Analyzed Columns",
       "7+ Analytical Dimensions"
     ],
-    "github": "https://github.com/sAkhil2027/diwali-sale-anaysis",
+    "github": "https://github.com/sAkhil2027?tab=repositories",
     "demo": "",
     "slug": "diwali-sales-analysis",
     "category": "Data Analysis",
     "featured": false,
-    "image": "project-diwali-sales.png",
+    "image": "project-cloud-analytics.png",
     "long_description": "Diwali Sales Analysis is an exploratory data analysis project performed on a dataset containing 11,251 records and 15 columns representing customer demographics, geographic information, occupations, products, orders, and purchase amounts.",
     "architecture_highlights": "End-to-end exploratory data analysis architecture consisting of CSV data ingestion, initial dataset inspection, removal of irrelevant columns, missing-value handling, data type conversion, descriptive statistics, Pandas-based aggregation, and multi-dimensional visualization."
   },
@@ -292,7 +292,7 @@
     "slug": "iphone-ecommerce-sales-analysis",
     "category": "Data Analysis",
     "featured": false,
-    "image": "project-iphone-analysis.png",
+    "image": "project-cloud-analytics.png",
     "long_description": "iPhone E-Commerce Sales Analysis is an end-to-end data analysis project performed on 5,843 records containing product, pricing, platform, geographic, and temporal information.",
     "architecture_highlights": "End-to-end exploratory analytics architecture consisting of raw e-commerce data ingestion, data-quality inspection, regex-based product feature extraction, Pandas aggregation, and Matplotlib/Seaborn visualization."
   }
