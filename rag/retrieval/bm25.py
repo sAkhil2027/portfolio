@@ -25,15 +25,46 @@ class BM25Retriever:
         self.doc_freqs: List[Dict[str, int]] = []
         self.idf: Dict[str, float] = {}
 
-    def _tokenize(self, text: str) -> List[str]:
-        return re.findall(r"\w+", text.lower())
+    STOPWORDS = {
+        "does", "do", "did", "have", "has", "had", "is", "am", "are", "was", "were",
+        "the", "a", "an", "and", "or", "in", "on", "at", "to", "for", "of", "with",
+        "by", "any", "all", "some", "tell", "me", "about", "what", "which", "who",
+        "how", "where", "when", "why", "can", "could", "would", "should", "his", "her",
+        "their", "akhil", "akhils"
+    }
+
+    def _normalize_token(self, token: str) -> str:
+        """Normalizes English plurals and standard suffixes."""
+        if token.endswith("ies") and len(token) > 4:
+            return token[:-3] + "y"
+        if token.endswith("es") and len(token) > 3 and token[-3] in ("s", "x", "z", "c", "h"):
+            return token[:-2]
+        if token.endswith("s") and not token.endswith("ss") and len(token) > 3:
+            return token[:-1]
+        return token
+
+    def _tokenize(self, text: str, is_query: bool = False) -> List[str]:
+        raw_tokens = re.findall(r"\w+", text.lower())
+        tokens = []
+        for t in raw_tokens:
+            if is_query and t in self.STOPWORDS:
+                continue
+            norm = self._normalize_token(t)
+            tokens.append(norm)
+            if norm != t:
+                tokens.append(t)
+
+        if is_query and not tokens:
+            tokens = [self._normalize_token(t) for t in raw_tokens]
+
+        return tokens
 
     def index_chunks(self, chunks: List[DocumentChunk]):
         """
         Builds the BM25 index over a list of DocumentChunk objects.
         """
         self.chunks = chunks
-        self.corpus_tokens = [self._tokenize(c.text) for c in chunks]
+        self.corpus_tokens = [self._tokenize(c.text, is_query=False) for c in chunks]
         self.doc_len = [len(tokens) for tokens in self.corpus_tokens]
         num_docs = len(chunks)
 
@@ -66,7 +97,7 @@ class BM25Retriever:
         if not self.chunks or self.avgdl == 0.0:
             return []
 
-        q_tokens = self._tokenize(query)
+        q_tokens = self._tokenize(query, is_query=True)
         scores: List[float] = [0.0] * len(self.chunks)
 
         for i, doc_freq in enumerate(self.doc_freqs):
