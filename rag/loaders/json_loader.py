@@ -8,6 +8,7 @@ from knowledge.schemas import DocumentMetadata
 def format_json_to_markdown(data: Any, item_title: str = "") -> str:
     """
     Recursively converts JSON dictionaries and lists into section-structured Markdown.
+    Keeps scalar key-values grouped together under the item title to prevent micro-chunk fragmentation.
     """
     if isinstance(data, str):
         return data
@@ -19,12 +20,21 @@ def format_json_to_markdown(data: Any, item_title: str = "") -> str:
         lines.append(f"# {item_title}")
 
     if isinstance(data, dict):
+        # 1. Output scalar key-values first as bullet points under the main header
+        for k, v in data.items():
+            if v is None or v == "" or v == []:
+                continue
+            if not isinstance(v, (dict, list)):
+                heading = k.replace("_", " ").title()
+                lines.append(f"- **{heading}:** {v}")
+
+        # 2. Output nested lists and dictionaries as subsections
         for k, v in data.items():
             if v is None or v == "" or v == []:
                 continue
             heading = k.replace("_", " ").title()
             if isinstance(v, list):
-                lines.append(f"## {heading}")
+                lines.append(f"\n## {heading}")
                 for elem in v:
                     if isinstance(elem, dict):
                         sub_title = elem.get("name") or elem.get("label") or elem.get("title") or ""
@@ -32,11 +42,8 @@ def format_json_to_markdown(data: Any, item_title: str = "") -> str:
                     else:
                         lines.append(f"- {elem}")
             elif isinstance(v, dict):
-                lines.append(f"## {heading}")
+                lines.append(f"\n## {heading}")
                 lines.append(format_json_to_markdown(v))
-            else:
-                lines.append(f"## {heading}\n{v}")
-            lines.append("")
 
     elif isinstance(data, list):
         for elem in data:
