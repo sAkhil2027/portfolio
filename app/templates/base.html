@@ -201,7 +201,26 @@
 
   <!-- App JavaScript for Mobile Menu, Smooth Scroll & Form Interactivity -->
   <script>
+    // Force browser to always reset scroll to header/top on refresh
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+    window.addEventListener('beforeunload', () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    });
+
+    window.addEventListener('pageshow', () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      if (window.location.hash) {
+        history.replaceState(null, null, window.location.pathname + window.location.search);
+      }
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
       // Mobile Navigation Toggle
       const navToggle = document.getElementById('nav-toggle');
       const navLinks = document.getElementById('nav-links');
@@ -211,8 +230,6 @@
           navLinks.classList.toggle('active');
         });
       }
-
-
     });
 
     // Skill Filter Handler
