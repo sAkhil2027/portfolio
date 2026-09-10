@@ -1,16 +1,23 @@
 import os
+import sys
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, BASE_DIR)
+
 from rag.pipeline import RAGPipeline
-from app import KNOWLEDGE_DIR, BM25_INDEX_PATH, VECTOR_INDEX_PATH
+
+KNOWLEDGE_DIR = os.path.join(BASE_DIR, "knowledge")
+BM25_INDEX_PATH = os.path.join(KNOWLEDGE_DIR, "bm25_index.pkl")
+VECTOR_INDEX_PATH = os.path.join(KNOWLEDGE_DIR, "vector_index.json")
 
 def main():
-    # Initialise pipeline with the knowledge directory
+    print("[generate_indices] Ingesting and building RAG indices...")
     pipeline = RAGPipeline(knowledge_dir=KNOWLEDGE_DIR)
-    # Build documents, clean, chunk and index them
     pipeline.ingest_and_index()
-    # Persist the two indexes to the expected locations
     pipeline.save_indices(BM25_INDEX_PATH, VECTOR_INDEX_PATH)
-    print("[generate_indices] Saved BM25 index to:", BM25_INDEX_PATH)
-    print("[generate_indices] Saved vector index to:", VECTOR_INDEX_PATH)
+    print(f"[generate_indices] Saved BM25 index ({len(pipeline.chunks)} chunks) to: {BM25_INDEX_PATH}")
+    print(f"[generate_indices] Saved vector index to: {VECTOR_INDEX_PATH}")
 
 if __name__ == "__main__":
     main()
+
